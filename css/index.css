@@ -152,7 +152,7 @@ body {
         display: flex;
         position: absolute;
         top: 30px;
-        right: 25px;
+        right: 30px;
     }
 
     .signup-btn {
@@ -188,6 +188,11 @@ body {
     text-align: center;
     padding: 0 30px;
     
+    
+}
+
+.hero-section .hero-content{
+   
 }
 
 .hero-section h1 {
@@ -748,6 +753,7 @@ button:hover {
 
 .footer-content p {
     margin: 0;
+    font-size: 10px;
 }
 
 .social-links {
@@ -759,10 +765,89 @@ button:hover {
     margin-left: 15px;
 }
 
+.social-links li a{
+    text-decoration: none;
+    color: white;
+    font-size: 10px;
+}
+
 .social-links li img {
     width: 24px;
     height: auto;
 }
+
+.layer1{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .layer1 h3{
+    color: #fdcb85;
+    font-size: 8px;
+  }
+  
+  .layer1 .one ul a li{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 8px;
+  }
+  
+  .layer1 .two ul a{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 8px;
+  }
+  
+  .layer1 .three ul a{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 8px;
+    
+  }
+  
+  .layer1 .four a li{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 8px;
+  }
+  
+  .layer1 .five ul li{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 8px;
+  }
+  
+  .layer2{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+   
+  }
+  
+  .layer2 .images{
+    display: flex;
+    
+  }
+  
+  .layer2 .images .images1{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .layer2 .images .images1 img{
+    width: 3rem;
+    border-color: white;
+    border-width: 1px;
+    margin-bottom: 7px;
+    margin-right: 10px;
+    
+  }  
 
 /* Media Queries for Footer Section */
 @media (max-width: 768px) {
@@ -895,7 +980,8 @@ button:hover {
 
 .faq{
     background: url('https://img.freepik.com/premium-photo/man-suit-question-mark-is-front-him_1115474-135069.jpg?uid=R55814283&ga=GA1.2.1328920485.1725346503&semt=ais_hybrid') no-repeat center center/cover;
-    height: 50vh;
+    height: 60vh;
+    margin-bottom: 1rem;
 }
 
 .faq-content{
@@ -938,7 +1024,8 @@ button:hover {
 }
 
 .opinion{
-    background: linear-gradient(135deg, #2e1a00,  #1c1e21);
+    background: linear-gradient(135deg, #2e1a0033,  #1c1e21);
+    padding: 1rem 0rem;
 }
 
 .opinion-content {
@@ -1031,10 +1118,14 @@ button:hover {
   .tabcontent {
     display: none;
     padding: 20px;
-    font-size: 13px;
+    border-radius: 5px;
     border: 1px solid #ccc;
     background: white;
     animation: fadeEffect 0.9s; /* Fade in effect */
+  }
+
+  .tabcontent p{
+    font-size: 13px;
   }
   
   @keyframes fadeEffect {
