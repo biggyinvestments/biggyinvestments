@@ -209,7 +209,7 @@ body {
 }
 
 .hero-btn {
-    background-color: #1da1f2;
+    background-color:#f0bf56;
     color: #fff;
     padding: 20px 30px;
     margin-top: 50px;
@@ -219,7 +219,7 @@ body {
 }
 
 .hero-btn:hover {
-    background-color: #0e7cc7;
+    background-color: #f0bf56d0;
 }
 
 .market-ticker {
@@ -375,7 +375,7 @@ body {
 
 .about-content h2 {
     font-size: 1.6rem;
-    color: #1f3c88;
+    color: #f0bf56;
     margin-bottom: 20px;
 }
 
@@ -393,7 +393,7 @@ body {
 }
 
 .about-images h2{
-    color: #1f3c88;
+    color: #f0bf56;
     margin-bottom: 20px;
 }
 
@@ -406,7 +406,7 @@ body {
 }
 
 .image-container button{
-    background-color: #1da1f2;
+    background-color:#f0bf56;
     color: #fff;
     padding: 15px 30px;
     margin-top: 50px;
@@ -418,7 +418,7 @@ body {
 }
 
 .image-container button:hover {
-    background-color: #0e7cc7;
+    background-color: #f0bf56cc;
 }
 
 
@@ -502,7 +502,7 @@ body {
 
 
 button{
-    background-color: #1da1f2;
+    background-color: #f0bf56;
     color: #fff;
     padding: 15px 30px;
     margin-top: 50px;
@@ -514,7 +514,7 @@ button{
 }
 
 button:hover {
-    background-color: #0e7cc7;
+    background-color: #f0bf56d3;
 }
 
 
@@ -574,7 +574,7 @@ button:hover {
 }
 
 .news-section h2{
-    color: #1f3d89;
+    color: #f0bf56;
     
 }
 
@@ -604,7 +604,7 @@ button:hover {
 
 .read-more {
     font-size: 14px;
-    color: #1da1f2;
+    color: #f0bf56;
     text-decoration: none;
     font-weight: bold;
 }
@@ -631,7 +631,7 @@ button:hover {
     text-align: center;
     margin-bottom: 20px;
     font-size: 2em;
-    color: rgb(31, 61, 137);
+    color: #f0bf56;
 }
 
 .partners-carousel {
@@ -903,13 +903,13 @@ button:hover {
 }
 
 .tab.active {
-    background-color: #ffcc00;
+    background-color: #f0bf56;
     color: #333;
 }
 
 .testimonial {
     background-color: #2a2a2a;
-    border: 2px solid #ffcc00;
+    border: 2px solid #f0bf56;
     border-radius: 10px;
     padding: 20px;
     display: none;
@@ -945,7 +945,7 @@ button:hover {
 }
 
 .testimonial .stars {
-    color: #ffcc00;
+    color:#f0bf56;
     margin-top: 10px;
 }
 
@@ -967,7 +967,7 @@ button:hover {
 }
 
 .content em{
-    color: gold;
+    color: #f0bf56;
     font-weight: bold;
 }
 .content ul{
@@ -1004,7 +1004,7 @@ button:hover {
     font-size: 13px;
     background-color: rgba(255, 255, 255, 0.062); /* Main color for questions */
     color: white; /* White text for contrast */
-    border: 2px solid #ffcc00;
+    border: 2px solid#f0bf56;
     padding: 10px;
     border-radius: 5px;
     transition: background-color 0.3s;
@@ -1045,19 +1045,19 @@ button:hover {
     width: 70%;
     padding: 10px;
     margin: 10px 0;
-    border: 2px solid #ffcc00;
+    border: 2px solid #f0bf56;
     border-radius: 5px;
     transition: border-color 0.3s ease-in-out;
     font-size: 16px; /* Larger text for better readability */
 }
 
 .opinion-form textarea:focus, .opinion-form input:focus {
-    border-color: rgba(29, 161, 242, 0.8);
+    border-color:#f0bf56;
 }
 
 .opinion-form button {
     padding: 10px 20px;
-    background-color: rgba(29, 161, 242, 1);
+    background-color: #f0bf56;
     color: white;
     border: none;
     border-radius: 5px;
@@ -1066,7 +1066,7 @@ button:hover {
 }
 
 .opinion-form button:hover {
-    background-color: rgba(29, 161, 242, 0.8);
+    background-color: #f0bf56d3;
 }
 
 /* Animations */
@@ -1090,7 +1090,7 @@ button:hover {
   }
 
   #about-us h2{
-    color: rgba(29, 161, 242, 1);
+    color: #f0bf56;
   }
   
   #about-us .tabs {
@@ -1104,7 +1104,7 @@ button:hover {
     background-color: #ffffff;
     font-size: 10px;
     font-weight: bold;
-    color: #0e7cc7;
+    color: #f0bf56;
     border: none;
     padding: 14px 20px;
     margin: 0 5px;
@@ -1138,7 +1138,7 @@ button:hover {
   .tabcontent h3 {
     font-size: 24px;
     margin-bottom: 15px;
-    color: #0e7cc7;
+    color: #f0bf56;
   }
   
   .tabcontent p {

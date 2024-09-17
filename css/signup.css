@@ -228,46 +228,56 @@ body {
 
 
 
-.login-container {
-    background-color: rgba(255, 255, 255, 0.932);
+
+
+
+
+
+
+
+
+
+
+
+.signup-container {
+    background-color: white;
     width: 100%;
-    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.932);
     border: 2px solid #f0bf56;
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.login-header {
+.signup-header {
     font-size: 28px;
     font-weight: bold;
     color: #f0bf56;
     text-align: center;
     margin-bottom: 30px;
-    font-family: "Protest Guerrilla";
 }
 
-.login-form {
+.signup-form {
     display: flex;
     flex-direction: column;
 }
 
-.login-form input {
+.signup-form input {
     padding: 15px;
-    color: rgb(36, 36, 36);
     margin-bottom: 20px;
-    border: 2px solid #f0bf561a;
+    border: 2px solid rgba(29, 161, 242, 0.1);
     border-radius: 5px;
     font-size: 16px;
     transition: border-color 0.3s;
-    background-color: #ffffff;
+    background-color: #f9f9f9;
 }
 
-.login-form input:focus {
+.signup-form input:focus {
     border-color: #f0bf56;
     background-color: white;
 }
 
-.login-form button {
+.signup-form button {
     padding: 15px;
     background-color: #f0bf56;
     color: white;
@@ -278,56 +288,54 @@ body {
     transition: background-color 0.3s;
 }
 
-.login-form button:hover {
-    background-color:#f0bf56bd;
+.signup-form button:hover {
+    background-color: #f0bf56;
 }
 
-.forgot-password {
-    text-align: right;
+.terms-conditions {
     font-size: 14px;
-    margin-top: -15px;
-    margin-bottom: 15px;
-    
+    text-align: left;
+    margin-bottom: 20px;
 }
 
-.forgot-password a {
-    text-decoration: none;
-    color:  #f0bf56;
-    transition: color 0.3s;
+.terms-conditions input[type="checkbox"] {
+    margin-right: 10px;
 }
 
-.forgot-password a:hover {
-    color:  #f0bf56c9;
-}
-
-.login-container .signup {
+.login-link {
     text-align: center;
-    margin-top: 20px;
     font-size: 14px;
-    color: rgb(36, 36, 36);
+    color: rgb(27, 27, 27);
 }
 
-.login-container .signup a {
-    color:  #f0bf56;
+.login-link a {
+    color: #f0bf56;
     text-decoration: none;
     font-weight: bold;
 }
 
-.login-container .signup a:hover {
-    color:  #f0bf56c9;
+.login-link a:hover {
+    color:#f0bf56d2;
 }
 
 /* Animation */
-.login-container {
+.signup-container {
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.login-container.visible {
+.signup-container.visible {
     opacity: 1;
     transform: translateY(0);
 }
+
+
+
+
+
+
+
 
 
 

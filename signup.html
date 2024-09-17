@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BIGGY Login</title>
-    <link rel="stylesheet" href="./css/forms.css">
+    <link rel="stylesheet" href="./css/signup.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap" rel="stylesheet">
@@ -65,18 +65,25 @@
 
     <section id="home" class="hero-section">
         <div class="hero-content container">
-            <div class="login-container">
-                <div class="login-header">Login</div>
-                <form class="login-form">
+            <div class="signup-container">
+                <div class="signup-header">Sign Up</div>
+                <form class="signup-form">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email" required>
                     <input type="text" placeholder="Username" required>
                     <input type="password" placeholder="Password" required>
-                    <div class="forgot-password">
-                        <a href="#">Forgot Password?</a>
+                    <input type="password" placeholder="Confirm Password" required>
+                    
+                    <div class="terms-conditions">
+                        <label>
+                            <input type="checkbox" required> I agree to the <a href="#">Terms & Conditions</a>
+                        </label>
                     </div>
-                    <button type="submit">Login</button>
+        
+                    <button type="submit">Sign Up</button>
                 </form>
-                <div class="signup">
-                    Don't have an account? <a href="signup.html">Sign up</a>
+                <div class="login-link">
+                    Already have an account? <a href="login.html">Login</a>
                 </div>
             </div>
         </div>
@@ -164,57 +171,9 @@
     
 
     <script>
-         window.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('.login-container').classList.add('visible');
+          // Adding animation on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.signup-container').classList.add('visible');
         });
-
-
-        //Assuming you are using Fetch API to send the login request
-document.getElementById('login-Form').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-
-  // Input validation
-  if (!email || !password) {
-    alert('Email and password are required');
-    return;
-  }
-
-  if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[^\s@]+$/.test(email)) {
-    alert('Invalid email address');
-    return;
-  }
-
-  fetch('/api/auth/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ email, password })
-  })
-  .then(response => {
-    // Check if the response is a redirect
-    if (response.redirected) {
-      // Redirect to the appropriate page
-      window.location.href = response.url;
-      return; // Exit the function to avoid further processing
-    }
-    return response.json(); // Otherwise, parse as JSON
-  })
-  .then(data => {
-    if (data) { // If there's data after JSON parsing
-      if (data.message === 'Login successful') {
-        // Store the username in local storage
-        localStorage.setItem('username', data.username);
-        window.location.href = '/dashboard.html'; // Redirect to user dashboard
-      } else if (data.error) {
-        alert(data.error); // Show error message
-      }
-    }
-  })
-  .catch(error => console.error('Error:', error));
-});
     </script>
 </body>
