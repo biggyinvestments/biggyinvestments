@@ -95,7 +95,7 @@ body {
 }
 
 .hamburger span {
-    background-color: #F0A500;
+    background-color: #f0bf56; 
     height: 3px;
     border-radius: 2px;
     transition: all 0.3s;
@@ -195,7 +195,7 @@ body {
     font-weight: bold;
     font-family: "Protest Guerrilla", sans-serif;
     margin-top: -5rem;
-    color: #F0A500;
+    color: #f0bf56;
 }
 
 .hero-section p {
