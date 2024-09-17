@@ -97,7 +97,6 @@ body {
 .hamburger span {
     background-color: #F0A500;
     height: 3px;
-   
     border-radius: 2px;
     transition: all 0.3s;
 }
@@ -151,6 +150,9 @@ body {
 
     .hamburger {
         display: flex;
+        position: absolute;
+        top: 30px;
+        right: 25px;
     }
 
     .signup-btn {
@@ -178,7 +180,7 @@ body {
 
 .hero-section {
     background: url('https://template.discretedev.com/html/tradepro/assets/img/banner/hero/1.png') no-repeat center center/cover;
-    height: 60vh;
+    height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,6 +194,8 @@ body {
     font-size: 48px;
     font-weight: bold;
     font-family: "Protest Guerrilla", sans-serif;
+    margin-top: -5rem;
+    color: #F0A500;
 }
 
 .hero-section p {
@@ -202,7 +206,7 @@ body {
 .hero-btn {
     background-color: #1da1f2;
     color: #fff;
-    padding: 15px 30px;
+    padding: 20px 30px;
     margin-top: 50px;
     border-radius: 5px;
     text-transform: uppercase;
@@ -277,7 +281,8 @@ body {
     .hero-section p {
         font-size: 16px;
         text-align: center;
-        width: 50%;
+        width: 100%;
+        font-weight: bold;
     }
 
     .hero-section a{
@@ -286,7 +291,7 @@ body {
     }
 
     .hero-btn {
-        padding: 15px 30px;
+        padding: 20px 30px;
         font-size: 14px;
     }
 }
@@ -986,3 +991,57 @@ button:hover {
     opacity: 1;
     transform: translateY(0);
 }
+
+
+
+#about-us {
+    text-align: center;
+    padding: 50px;
+    background: #f4f4f4;
+  }
+  
+  #about-us .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 10px;
+  }
+  
+  .tablink {
+    background-color: #ddd;
+    font-size: 10px;
+    color: black;
+    border: none;
+    padding: 14px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .tablink:hover {
+    background-color: #bbb;
+  }
+  
+  .tabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background: white;
+    animation: fadeEffect 0.5s; /* Fade in effect */
+  }
+  
+  @keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  .tabcontent h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .tabcontent p {
+    font-size: 16px;
+    color: #333;
+  }
+  

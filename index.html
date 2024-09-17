@@ -61,16 +61,16 @@
         <span></span>
         <span></span>
     </div>
-    <div class="element"></div>
+   
         
     </div>
 
     <section id="home" class="hero-section">
         <div class="hero-content container">
-            <hr><br>
+        
             <h1>Empowering Your Crypto Investments</h1>
             <p>Join the next wave of crypto pioneers. Invest, grow, and diversify with confidence using our secure and cutting-edge platform. We're here to help you maximize your gains in the evolving crypto world.</p> <br><br>
-            <a href="#signup" class="btn hero-btn">Start Investing</a>
+            <a href="signup.html" class="hero-btn">Start Investing</a>
         </div>
     </section>
 
@@ -121,6 +121,37 @@ Whether you're looking to diversify your portfolio or just getting started with 
                 </div> -->
             </div>
         </div>
+
+        <section id="about-us">
+            <h2>About Us</h2>
+            <div class="tabs">
+              <button class="tablink" onclick="openTab(event, 'innovation')">Innovation</button>
+              <button class="tablink" onclick="openTab(event, 'integrity')">Integrity</button>
+              <button class="tablink" onclick="openTab(event, 'customer-focus')">Customer Focus</button>
+              <button class="tablink" onclick="openTab(event, 'excellence')">Excellence</button>
+            </div>
+          
+            <div id="innovation" class="tabcontent">
+              <h3>Innovation</h3>
+              <p>We are pioneers in bringing cutting-edge solutions to the table, ensuring that we stay ahead in the competitive market.</p>
+            </div>
+          
+            <div id="integrity" class="tabcontent">
+              <h3>Integrity</h3>
+              <p>We uphold the highest ethical standards in all our operations, fostering trust and transparency with our stakeholders.</p>
+            </div>
+          
+            <div id="customer-focus" class="tabcontent">
+              <h3>Customer Focus</h3>
+              <p>Our customers are at the heart of everything we do. We strive to exceed expectations and provide exceptional service.</p>
+            </div>
+          
+            <div id="excellence" class="tabcontent">
+              <h3>Excellence</h3>
+              <p>We consistently pursue excellence in all aspects of our work, ensuring quality and continuous improvement.</p>
+            </div>
+          </section>
+          
     </section>
     <div class="element"></div>
         
@@ -389,6 +420,28 @@ Whether you're looking to diversify your portfolio or just getting started with 
         
        
   <script>
+
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.style.backgroundColor = "#29a1f2"; // Change to your primary color
+}
+
+// Set default tab
+document.getElementById("innovation").style.display = "block";
+
+
     const apiKey = '16a42969c1424ceb879197d2e62c760a'; // Replace with your NewsAPI key
 const url = `https://newsapi.org/v2/everything?q=crypto&apiKey=${apiKey}`;
 
