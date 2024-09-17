@@ -466,18 +466,18 @@ body {
         padding: 0;
         background-color: rgba(255, 255, 255, 0.212);
         border-radius: 10px;
-        padding: 10px 5px;
+        padding: 10px 10px;
         box-shadow: 1px 1px 5px rgba(36, 36, 36, 0.103);
     }
 
     .about-content p{
-        font-size: 16px;
+        font-size: 13px;
         text-align: center;
     }
 
     .about-images {
         flex-direction: column;
-        font-size: 16px;
+        font-size: 13px;
         color: black;
     }
 
@@ -997,7 +997,11 @@ button:hover {
 #about-us {
     text-align: center;
     padding: 50px;
-    background: #f4f4f4;
+    background: #1c1e21;
+  }
+
+  #about-us h2{
+    color: rgba(29, 161, 242, 1);
   }
   
   #about-us .tabs {
@@ -1008,12 +1012,14 @@ button:hover {
   }
   
   .tablink {
-    background-color: #ddd;
+    background-color: #ffffff;
     font-size: 10px;
+    font-weight: bold;
     color: black;
     border: none;
     padding: 14px 20px;
     margin: 0 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.247);
     cursor: pointer;
     transition: background-color 0.3s;
   }
@@ -1025,9 +1031,10 @@ button:hover {
   .tabcontent {
     display: none;
     padding: 20px;
+    font-size: 13px;
     border: 1px solid #ccc;
     background: white;
-    animation: fadeEffect 0.5s; /* Fade in effect */
+    animation: fadeEffect 0.9s; /* Fade in effect */
   }
   
   @keyframes fadeEffect {
@@ -1038,6 +1045,7 @@ button:hover {
   .tabcontent h3 {
     font-size: 24px;
     margin-bottom: 15px;
+    color: #0e7cc7;
   }
   
   .tabcontent p {
