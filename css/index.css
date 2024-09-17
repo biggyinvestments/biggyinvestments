@@ -478,6 +478,7 @@ body {
     .about-content p{
         font-size: 13px;
         text-align: center;
+        padding: 10px;
     }
 
     .about-images {
@@ -495,7 +496,7 @@ body {
         background-color: rgba(255, 255, 255, 0.212);
         margin-top: 1rem;
         box-shadow: 1px 1px 5px rgba(36, 36, 36, 0.103);
-        padding: 10px 5px;
+        padding: 10px 20px;
     }
 }
 
@@ -774,6 +775,7 @@ button:hover {
 .social-links li img {
     width: 24px;
     height: auto;
+    border-radius: 20rem;
 }
 
 .layer1{
@@ -951,7 +953,7 @@ button:hover {
 .content{
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid black;
-    padding: 1rem;
+    padding: 2.5rem 1rem;
     font-size: 8px;
     line-height: 0.9rem;
 }
@@ -1102,7 +1104,7 @@ button:hover {
     background-color: #ffffff;
     font-size: 10px;
     font-weight: bold;
-    color: black;
+    color: #0e7cc7;
     border: none;
     padding: 14px 20px;
     margin: 0 5px;
