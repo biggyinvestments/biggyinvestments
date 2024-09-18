@@ -15,7 +15,7 @@
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    color: #fff;
+    color: rgba(116, 0, 0, 1);
     background-color: #1c1e21; /* Dark background for maturity */
     width: 100%;
 }
@@ -35,7 +35,7 @@ body {
     display: flex;
     align-items: center;
     padding: 20px;
-    background-color: #1c1e21;
+    background-color:rgb(255, 255, 255);
     color: #fff;
     position: relative;
 }
@@ -95,7 +95,7 @@ body {
 }
 
 .hamburger span {
-    background-color: #f0bf56; 
+    background-color: rgba(116, 0, 0, 1); 
     height: 3px;
     border-radius: 2px;
     transition: all 0.3s;
@@ -178,7 +178,7 @@ body {
 
 
 
-.hero-section {
+/* .hero-section {
     background: url('https://template.discretedev.com/html/tradepro/assets/img/banner/hero/1.png') no-repeat center center/cover;
     height: 70vh;
     display: flex;
@@ -203,7 +203,7 @@ body {
     color: #f0bf56;
 }
 
-.hero-section p {
+/* .hero-section p {
     font-size: 18px;
     margin-top: 10px;
 }
@@ -220,7 +220,68 @@ body {
 
 .hero-btn:hover {
     background-color: #f0bf56d0;
+} */ 
+
+.hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
+
+/* Full-screen video styling */
+.hero-section video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    object-fit: cover;
+    filter: blur(5px);
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    font-family: "Protest Guerrilla", sans-serif;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content a{
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: rgba(116, 0, 0, 1);
+    color: white;
+   border-style: solid;
+   border-width: 2px;
+   border-color: rgba(116, 0, 0, 1);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.hero-content button:hover {
+    background-color: rgba(29, 161, 242, 0.8);
+}
+
 
 .market-ticker {
     background-color: #2b2d31;
@@ -275,7 +336,7 @@ body {
 
 @media (max-width: 768px) {
     .hero-section{
-        height: 50vh;
+        height: 60vh;
     }
 
     .hero-section h1 {
@@ -347,7 +408,7 @@ body {
 
 .element{
     width: 100%;
-    background-color: #1d4480;
+    background-color:  rgba(116, 0, 0, 1);
     height: 0.5rem;
     transform: skew(60deg);
    
@@ -375,7 +436,7 @@ body {
 
 .about-content h2 {
     font-size: 1.6rem;
-    color: #f0bf56;
+    color:rgba(116, 0, 0, 1);
     margin-bottom: 20px;
 }
 
@@ -393,7 +454,7 @@ body {
 }
 
 .about-images h2{
-    color: #f0bf56;
+    color: rgba(116, 0, 0, 1);
     margin-bottom: 20px;
 }
 
@@ -406,7 +467,7 @@ body {
 }
 
 .image-container button{
-    background-color:#f0bf56;
+    background-color:rgba(116, 0, 0, 1);
     color: #fff;
     padding: 15px 30px;
     margin-top: 50px;
@@ -418,7 +479,7 @@ body {
 }
 
 .image-container button:hover {
-    background-color: #f0bf56cc;
+    background-color: rgba(116, 0, 0, 0.863);
 }
 
 
@@ -502,7 +563,7 @@ body {
 
 
 button{
-    background-color: #f0bf56;
+    background-color: rgba(116, 0, 0, 1);
     color: #fff;
     padding: 15px 30px;
     margin-top: 50px;
@@ -514,7 +575,7 @@ button{
 }
 
 button:hover {
-    background-color: #f0bf56d3;
+    background-color: rgba(116, 0, 0, 0.815);
 }
 
 
@@ -574,7 +635,7 @@ button:hover {
 }
 
 .news-section h2{
-    color: #f0bf56;
+    color:rgba(116, 0, 0, 1);
     
 }
 
@@ -604,7 +665,7 @@ button:hover {
 
 .read-more {
     font-size: 14px;
-    color: #f0bf56;
+    color:rgba(116, 0, 0, 1);
     text-decoration: none;
     font-weight: bold;
 }
@@ -631,7 +692,7 @@ button:hover {
     text-align: center;
     margin-bottom: 20px;
     font-size: 2em;
-    color: #f0bf56;
+    color: rgba(116, 0, 0, 1);
 }
 
 .partners-carousel {
@@ -785,7 +846,7 @@ button:hover {
   }
   
   .layer1 h3{
-    color: #fdcb85;
+    color:rgba(116, 0, 0, 1);
     font-size: 8px;
   }
   
@@ -903,13 +964,13 @@ button:hover {
 }
 
 .tab.active {
-    background-color: #f0bf56;
-    color: #333;
+    background-color:rgba(116, 0, 0, 1);
+    color: #ffffff;
 }
 
 .testimonial {
-    background-color: #2a2a2a;
-    border: 2px solid #f0bf56;
+    background-color: #ffffff;
+    border: 2px solid rgba(116, 0, 0, 1);
     border-radius: 10px;
     padding: 20px;
     display: none;
@@ -945,7 +1006,7 @@ button:hover {
 }
 
 .testimonial .stars {
-    color:#f0bf56;
+    color:rgba(116, 0, 0, 1);
     margin-top: 10px;
 }
 
@@ -967,7 +1028,7 @@ button:hover {
 }
 
 .content em{
-    color: #f0bf56;
+    color: rgba(116, 0, 0, 1);
     font-weight: bold;
 }
 .content ul{
@@ -989,7 +1050,7 @@ button:hover {
 .faq-content{
     padding: 2rem;
     margin-top: 2rem;
-    background-color: #1c1e21;
+    background-color: #ffffff;
     border-bottom-left-radius: 2rem;
     border-top-right-radius: 2rem;
     box-shadow: 2px 2px 10px black;
@@ -1004,7 +1065,7 @@ button:hover {
     font-size: 13px;
     background-color: rgba(255, 255, 255, 0.062); /* Main color for questions */
     color: white; /* White text for contrast */
-    border: 2px solid#f0bf56;
+    border: 2px solid rgba(116, 0, 0, 1);
     padding: 10px;
     border-radius: 5px;
     transition: background-color 0.3s;
