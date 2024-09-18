@@ -244,7 +244,7 @@ body {
 
 .hero-content {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
@@ -284,7 +284,7 @@ body {
 
 
 .market-ticker {
-    background-color: #2b2d31;
+    background-color: #ffffff;
     padding: 10px 0;
     color: #fff;
     font-size: 14px;
@@ -336,7 +336,7 @@ body {
 
 @media (max-width: 768px) {
     .hero-section{
-        height: 60vh;
+        height: 65vh;
     }
 
     .hero-section h1 {
@@ -1087,7 +1087,7 @@ button:hover {
 }
 
 .opinion{
-    background: linear-gradient(135deg, #2e1a0033,  #1c1e21);
+    background: linear-gradient(135deg, #ffffff,  #ffffff);
     padding: 1rem 0rem;
 }
 
@@ -1106,19 +1106,19 @@ button:hover {
     width: 70%;
     padding: 10px;
     margin: 10px 0;
-    border: 2px solid #f0bf56;
+    border: 2px solid rgba(116, 0, 0, 1);
     border-radius: 5px;
     transition: border-color 0.3s ease-in-out;
     font-size: 16px; /* Larger text for better readability */
 }
 
 .opinion-form textarea:focus, .opinion-form input:focus {
-    border-color:#f0bf56;
+    border-color:rgba(116, 0, 0, 1);
 }
 
 .opinion-form button {
     padding: 10px 20px;
-    background-color: #f0bf56;
+    background-color: rgba(116, 0, 0, 1);
     color: white;
     border: none;
     border-radius: 5px;
@@ -1127,7 +1127,7 @@ button:hover {
 }
 
 .opinion-form button:hover {
-    background-color: #f0bf56d3;
+    background-color: rgba(116, 0, 0, 0.849);
 }
 
 /* Animations */
@@ -1147,11 +1147,11 @@ button:hover {
 #about-us {
     text-align: center;
     padding: 50px;
-    background: #1c1e21;
+    background: #ffffff;
   }
 
   #about-us h2{
-    color: #f0bf56;
+    color: rgba(116, 0, 0, 1);
   }
   
   #about-us .tabs {
@@ -1165,7 +1165,7 @@ button:hover {
     background-color: #ffffff;
     font-size: 10px;
     font-weight: bold;
-    color: #f0bf56;
+    color: rgba(116, 0, 0, 1);
     border: none;
     padding: 14px 20px;
     margin: 0 5px;
@@ -1199,7 +1199,7 @@ button:hover {
   .tabcontent h3 {
     font-size: 24px;
     margin-bottom: 15px;
-    color: #f0bf56;
+    color: rgba(116, 0, 0, 1);
   }
   
   .tabcontent p {
