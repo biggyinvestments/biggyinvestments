@@ -218,7 +218,49 @@ body {
 }
 
 
+@media (max-width: 768px) {
+    .hero-section{
+        height: 125vh;
+    }
 
+    .hero-section h1 {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .hero-section p {
+        font-size: 16px;
+        text-align: center;
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .hero-section a{
+        text-decoration: none;
+        padding: 10px 20px ;
+    }
+
+    .hero-btn {
+        padding: 20px 30px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 28px;
+    }
+
+    .hero-section p {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .hero-btn {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+}
 
 
 

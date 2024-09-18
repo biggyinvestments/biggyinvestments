@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIGGY Sign Up</title>
-    <link rel="stylesheet" href="./css/signup.css">
+    <title>BIGGY Login</title>
+    <link rel="stylesheet" href="./css/forms.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap" rel="stylesheet">
@@ -62,45 +62,36 @@
         <span></span>
     </div>
 
-
+<!-- 
     <section id="home" class="hero-section">
         <div class="hero-content container">
-            <div class="signup-container">
-                <div class="signup-header">Sign Up</div>
-                <form action="/api/auth/register" method="POST" class="signup-form">
-                    <input type="text" name="full_name" placeholder="Full name" required>
-                  <input type="email" name="email" placeholder="Email" required>
-                 
-                  <input type="text" name="username" placeholder="Username" required>
-                 
-                  
-                  <div class="input-split">
-                      <input type="password" name="password" placeholder="Password" required>
-                     
-                      <input type="password" name="confirm_password" placeholder="Confirm password" required>
-                  </div>
-                    <div class="input-split">
-                        <input type="text" name="secret_question" placeholder="Secret question">
-                        <input type="text" name="secret_answer" placeholder="Secret answer">
-                    </div>
-                    
-                    <input type="text" name="bitcoin_address" placeholder="Bitcoin address">
-                    <input type="text" name="referral_code" placeholder="Referral code if any">
-                    
-                    <div class="terms-conditions">
-                        <label style="color: rgba(116, 0, 0, 1);">
-                            <input type="checkbox" required> I agree to the <a href="#">Terms & Conditions</a>
-                        </label>
-                    </div>
-        
-                    <button type="submit">Sign Up</button>
-                </form>
-                <div class="login-link">
-                    Already have an account? <a href="login.html">Login</a>
-                </div>
-            </div>
+            
         </div>
-    </section>
+    </section> -->
+
+    <div class="hero-section">
+      <video autoplay muted loop playsinline poster="https://img.freepik.com/free-photo/3d-rendering-financial-neon-bull_23-2151691935.jpg?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid">
+          <source src="https://videocdn.cdnpk.net/videos/78338d9e-5a65-4c59-b08b-73fba44d4960/horizontal/previews/clear/large.mp4?token=exp=1726674695~hmac=dd48359a15ff4cd7aa78020d5223c64eceae59b96e9ef6ed274d2db808634d40" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+
+      <div class="hero-content">
+        <div class="login-container">
+          <div class="login-header">Login</div>
+          <form class="login-form">
+              <input type="text" placeholder="Username" required>
+              <input type="password" placeholder="Password" required>
+              <div class="forgot-password">
+                  <a href="#">Forgot Password?</a>
+              </div>
+              <button type="submit">Login</button>
+          </form>
+          <div class="signup">
+              Don't have an account? <a href="signup.html">Sign up</a>
+          </div>
+      </div>
+      </div>
+  </div>
 
 
 
@@ -184,106 +175,57 @@
     
 
     <script>
-          // Adding animation on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('.signup-container').classList.add('visible');
+         window.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.login-container').classList.add('visible');
         });
 
 
-        document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
-    const password = document.querySelector('input[name="password"]');
-    const confirmPassword = document.querySelector('input[name="confirm_password"]');
-    const email = document.querySelector('input[name="email"]');
-    const username = document.querySelector('input[name="username"]');
-    const referral_code = document.querySelector('input[name="referral_code"]')
-    const submitButton = document.querySelector('button[type="submit"]');
+        //Assuming you are using Fetch API to send the login request
+document.getElementById('login-Form').addEventListener('submit', function(event) {
+  event.preventDefault();
 
-    form.addEventListener('submit', (event) => {
-        let valid = true;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
 
-        // Clear previous error messages
-        document.querySelectorAll('.error').forEach(el => el.remove());
+  // Input validation
+  if (!email || !password) {
+    alert('Email and password are required');
+    return;
+  }
 
-        // Check if passwords match
-        if (password.value !== confirmPassword.value) {
-            showError(confirmPassword, 'Passwords do not match');
-            valid = false;
-        }
+  if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[^\s@]+$/.test(email)) {
+    alert('Invalid email address');
+    return;
+  }
 
-        // Basic email validation
-        if (!validateEmail(email.value)) {
-            showError(email, 'Invalid email address');
-            valid = false;
-        }
-
-        // Basic username validation
-        if (username.value.trim() === '') {
-            showError(username, 'Username cannot be empty');
-            valid = false;
-        }
-
-        // Prevent form submission if validation fails
-        if (!valid) {
-            event.preventDefault();
-        }
-    });
-
-    function showError(input, message) {
-        const error = document.createElement('div');
-        error.classList.add('error');
-        error.textContent = message;
-        input.parentElement.appendChild(error);
+  fetch('/api/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
+  })
+  .then(response => {
+    // Check if the response is a redirect
+    if (response.redirected) {
+      // Redirect to the appropriate page
+      window.location.href = response.url;
+      return; // Exit the function to avoid further processing
     }
-
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
+    return response.json(); // Otherwise, parse as JSON
+  })
+  .then(data => {
+    if (data) { // If there's data after JSON parsing
+      if (data.message === 'Login successful') {
+        // Store the username in local storage
+        localStorage.setItem('username', data.username);
+        window.location.href = '/dashboard.html'; // Redirect to user dashboard
+      } else if (data.error) {
+        alert(data.error); // Show error message
+      }
     }
-});
-
-
-
-  document.getElementById('toggle-password').addEventListener('click', function() {
-    const passwordInput = document.querySelector('input[name="password"]');
-    const confirmPasswordInput = document.querySelector('input[name="confirm_password"]');
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      confirmPasswordInput.type = 'text';
-      this.textContent = 'Hide';
-    } else {
-      passwordInput.type = 'password';
-      confirmPasswordInput.type = 'password';
-      this.textContent = 'Show';
-    }
-  });
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
-    
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-
-        fetch('/api/auth/register', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.message) {
-                alert(data.message); // Show success message
-            } else if (data.error) {
-                alert(data.error); // Show error message
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    });
+  })
+  .catch(error => console.error('Error:', error));
 });
     </script>
 </body>
