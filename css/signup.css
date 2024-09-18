@@ -220,7 +220,7 @@ body {
 
 @media (max-width: 768px) {
     .hero-section{
-        height: 125vh;
+        height: 140vh;
     }
 
     .hero-section h1 {
