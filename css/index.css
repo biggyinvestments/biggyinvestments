@@ -34,7 +34,7 @@ body {
 .navbar {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 15px;
     background-color:rgb(255, 255, 255);
     color: #fff;
     position: relative;
@@ -287,7 +287,7 @@ body {
 .market-ticker {
     background-color: #ffffff;
     padding: 10px 0;
-    color: #fff;
+    color: rgba(116, 0, 0, 1);
     font-size: 14px;
 }
 
@@ -337,7 +337,7 @@ body {
 
 @media (max-width: 768px) {
     .hero-section{
-        height: 65vh;
+        height: 75vh;
     }
 
     .hero-section h1 {
@@ -770,6 +770,7 @@ button:hover {
 .market-section {
     padding: 20px;
     text-align: center;
+    background-color: white;
 }
 .tradingview-widget-container {
     position: relative;
@@ -1065,9 +1066,9 @@ button:hover {
     cursor: pointer;
     font-size: 13px;
     background-color: rgba(255, 255, 255, 0.062); /* Main color for questions */
-    color: white; /* White text for contrast */
+    color: rgba(116, 0, 0, 1); /* White text for contrast */
     border: 2px solid rgba(116, 0, 0, 1);
-    padding: 10px;
+    padding: 8px;
     border-radius: 5px;
     transition: background-color 0.3s;
 }

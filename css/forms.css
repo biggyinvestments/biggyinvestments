@@ -33,7 +33,7 @@ body {
 .navbar {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 15px;
     background-color: #ffffff;
     color: rgba(116, 0, 0, 1);
     position: relative;
@@ -236,7 +236,7 @@ body {
 
 @media (max-width: 768px) {
     .hero-section{
-        height: 65vh;
+        height: 75vh;
     }
 
     .hero-section h1 {
@@ -294,6 +294,7 @@ body {
     border: 2px solid rgba(116, 0, 0, 1);
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.438);
+    margin-top: -5rem;
 }
 
 .login-header {
