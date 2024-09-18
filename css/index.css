@@ -239,16 +239,17 @@ body {
     transform: translate(-50%, -50%);
     z-index: -1;
     object-fit: cover;
-    filter: blur(5px);
+    filter: blur(3px);
 }
 
 .hero-content {
     position: absolute;
-    top: 60%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
     text-align: center;
+    
 }
 
 .hero-content h1 {

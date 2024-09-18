@@ -14,8 +14,8 @@
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    color: #fff;
-    background-color: #1c1e21; /* Dark background for maturity */
+    color: rgba(116, 0, 0, 1);
+    background-color: #ffffff; /* Dark background for maturity */
     width: 100%;
 }
 
@@ -34,8 +34,8 @@ body {
     display: flex;
     align-items: center;
     padding: 20px;
-    background-color: #1c1e21;
-    color: #fff;
+    background-color: #ffffff;
+    color: rgba(116, 0, 0, 1);
     position: relative;
 }
 
@@ -64,7 +64,7 @@ body {
 .logo a{
     text-decoration: none;
     margin-top: 1rem;
-    color:  #f0a500;
+    color: rgba(116, 0, 0, 1);
     font-weight: bold;
     text-decoration: underline;
 }
@@ -94,7 +94,7 @@ body {
 }
 
 .hamburger span {
-    background-color: #f0bf56; 
+    background-color: rgba(116, 0, 0, 1); 
     height: 3px;
     border-radius: 2px;
     transition: all 0.3s;
@@ -177,8 +177,8 @@ body {
 
 
 .hero-section {
-    background: url('https://template.discretedev.com/html/tradepro/assets/img/banner/hero/1.png') no-repeat center center/cover;
-    height: 90vh;
+    background: url('https://img.freepik.com/free-photo/3d-rendering-financial-neon-bull_23-2151691935.jpg?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid') no-repeat center center/cover;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -186,7 +186,6 @@ body {
     text-align: center;
     padding: 0 5px;
     margin-bottom: 10rem;
-    
 }
 
 
@@ -196,7 +195,7 @@ body {
     font-weight: bold;
     font-family: "Protest Guerrilla", sans-serif;
     margin-top: -5rem;
-    color: #f0bf56;
+    color: rgba(116, 0, 0, 1);
 }
 
 .hero-section p {
@@ -241,10 +240,10 @@ body {
 
 .signup-container {
     background-color: white;
-    margin-top: 5rem;
+    margin-top: 4rem;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.932);
-    border: 2px solid #f0bf56;
+    border: 2px solid rgba(116, 0, 0, 1);
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -253,7 +252,7 @@ body {
 .signup-header {
     font-size: 28px;
     font-weight: bold;
-    color: #f0bf56;
+    color: rgba(116, 0, 0, 1);
     text-align: center;
     margin-bottom: 30px;
 }
@@ -274,13 +273,13 @@ body {
 }
 
 .signup-form input:focus {
-    border-color: #f0bf56;
+    border-color:rgba(116, 0, 0, 1);
     background-color: white;
 }
 
 .signup-form button {
     padding: 15px;
-    background-color: #f0bf56;
+    background-color:rgba(116, 0, 0, 1);
     color: white;
     border: none;
     border-radius: 5px;
@@ -290,7 +289,7 @@ body {
 }
 
 .signup-form button:hover {
-    background-color: #f0bf56;
+    background-color: rgba(116, 0, 0, 0.856);
 }
 
 .terms-conditions {
@@ -310,13 +309,13 @@ body {
 }
 
 .login-link a {
-    color: #f0bf56;
+    color:rgba(116, 0, 0, 1);
     text-decoration: none;
     font-weight: bold;
 }
 
 .login-link a:hover {
-    color:#f0bf56d2;
+    color:rgba(116, 0, 0, 0.836);
 }
 
 /* Animation */
