@@ -37,10 +37,10 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post('/api/auth/register', (req, res) => {
-  const { full_name, email, username, password, secret_question, secret_answer, bitcoin_address, referral_code } = req.body;
+  const { full_name, email, username, password, referral_code } = req.body;
 
   // Validate input
-  if (!full_name || !email || !username || !password || !secret_question || !secret_answer) {
+  if (!full_name || !email || !username || !password ) {
     return res.status(400).json({ message: 'Please fill in all required fields.' });
   }
 
@@ -59,8 +59,8 @@ app.post('/api/auth/register', (req, res) => {
 
       // Insert user into database
       pool.query(
-        'INSERT INTO users (full_name, email, username, password, secret_question, secret_answer, bitcoin_address, referral_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-        [full_name, email, username, password, secret_question, secret_answer, bitcoin_address, referral_code],
+        'INSERT INTO users (full_name, email, username, password, referral_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        [full_name, email, username, password, referral_code],
         (error, results) => {
           if (error) {
             console.error('Error inserting user into the database:', error);
@@ -75,8 +75,8 @@ app.post('/api/auth/register', (req, res) => {
   } else {
     // Insert user into database without referral
     pool.query(
-      'INSERT INTO users (full_name, email, username, password, secret_question, secret_answer, bitcoin_address) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [full_name, email, username, password, secret_question, secret_answer, bitcoin_address],
+      'INSERT INTO users (full_name, email, username, password) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [full_name, email, username, password],
       (error, results) => {
         if (error) {
           console.error('Error inserting user into the database:', error);

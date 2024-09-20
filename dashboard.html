@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
+    <meta name="theme-color" content="  #740000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #740000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,19 +53,19 @@
   <div class="menu-items">
     <!-- Menu items -->
     <ul>
-      <li><a href="#"><img src="https://cdn-icons-png.freepik.com/256/12533/12533274.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Account</a></li><hr style="">
+      <li><a href="#">Account</a></li><hr style="">
 
-      <li><a href="invest.html"><img src="https://cdn-icons-png.freepik.com/256/6459/6459506.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Make Deposit</a></li><hr>
+      <li><a href="invest.html">Make Deposit</a></li><hr>
 
-      <li><a href="earning-history.html"><img src="https://cdn-icons-png.freepik.com/256/8407/8407593.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Earning History</a></li><hr>
+      <li><a href="earning-history.html">Earning History</a></li><hr>
 
-      <li><a href="user-withdrawal.html"><img src="https://cdn-icons-png.freepik.com/256/5271/5271455.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Withdraw</a></li><hr>
+      <li><a href="user-withdrawal.html">Withdraw</a></li><hr>
 
-      <li><a href="#"><img src="https://cdn-icons-png.freepik.com/256/16766/16766605.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Withdrawal History</a></li><hr>
+      <li><a href="#">Withdrawal History</a></li><hr>
 
-      <li><a href="#"><img src="https://cdn-icons-png.freepik.com/256/16389/16389876.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Edit Profile</a></li><hr>
+      <li><a href="#">Edit Profile</a></li><hr>
 
-      <li><a href="#"><img src="https://cdn-icons-png.freepik.com/256/3541/3541911.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Logout</a></li>
+      <li><a href="#">Logout</a></li>
     </ul>
   </div>
 </div>
@@ -149,6 +152,21 @@
             </div>
 
           </div>
+
+          <div class="tabs">
+            <div class="tab">
+              
+              <td class="text-right">$<span id="lastDeposit">0</span></td>
+              <h3>LAST DEPOSIT</h3>
+            </div>
+
+            <!-- <div class="tab">
+             
+              <span id="mostRecentActiveDeposit">0</span></p><hr style="border-style: solid; border-color: rgba(116, 0, 0, 1);">
+              <h3>ACTIVE DEPOSIT</h3>
+            </div> -->
+
+          </div>
               
 
             <br><br><br><b></b>
@@ -169,19 +187,10 @@
                <td>Earned Total:</td>
               <td class="text-right">$<span id="totalEarned">0</span></td>
               </tr>
-              <td>Last Deposit:</td>
-              <td class="text-right">$<span id="lastDeposit">0</span></td>
-             </tr>
            
              <tr>
               <td>Total Approved Deposit:</td>
               <td class="text-right">$<span id="totalDeposits">0</span></td>
-             </tr>
-           
-              
-             <tr>
-              <td>Last Withdrawal:</td>
-              <td class="text-right">$<span id="lastWithdrawal">0</span></td>
              </tr>
             </tbody></table>
 

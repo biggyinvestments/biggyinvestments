@@ -13,9 +13,10 @@
   
 
 body {
+  width: 100%;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    color: rgba(116, 0, 0, 1);
+    color: #740000;
     background-color: #ffffff; /* Dark background for maturity */
     width: 100%;
 }
@@ -34,7 +35,7 @@ body {
 .navbar {
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding: 5px 15px;
     background-color:rgb(255, 255, 255);
     color: #fff;
     position: relative;
@@ -280,13 +281,13 @@ body {
 
   .dashboard-sidebar li img{
     width: 14px;
-    margin-bottom: -5px;
     margin-right: 2px;
   }
   
   .dashboard-sidebar nav ul li a {
     color: rgba(116, 0, 0, 1);
     text-decoration: none;
+    font-weight: bold;
   }
   
   .dashboard-main {
@@ -508,7 +509,7 @@ body {
   }
 
   .tabs .tab h2{
-    font-size: 14px;
+    font-size: 16px;
     margin-left: 60%;
     margin-top: -13px;
     margin-bottom: 5px;
@@ -518,6 +519,14 @@ body {
     font-size: 10px;
     margin-top: 12px;
     color: rgb(238, 227, 255);
+  }
+
+  .tabs .tab p{
+    font-size: 16px;
+  }
+
+  .tabs .tab span{
+    font-size: 16px;
   }
 
 
@@ -682,7 +691,7 @@ border-left: none;
 
 table td {
 padding:3px 5px;
-font-size: 5px;
+font-size: 13px;
 background-color: rgba(116, 0, 0, 1);
 color: white;
 border-style: solid;
@@ -693,7 +702,7 @@ border-top: none;
 }
 
 table tr  td {
-  font-size: 10px;
+  font-size: 13px;
 }
 
 
@@ -703,7 +712,7 @@ font-weight:600;
 }
 
 table .text-right{
-  padding:3px 5px;
+  padding:7px 5px;
   font-size: 10px;
   background-color: white;
   width: 50%;
