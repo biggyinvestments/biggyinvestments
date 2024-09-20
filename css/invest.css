@@ -1,0 +1,743 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.protest-guerrilla-regular {
+    font-family: "Protest Guerrilla", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  
+
+body {
+  width: 100%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    color: #740000;
+    background-color: #ffffff; /* Dark background for maturity */
+    width: 100%;
+}
+
+
+header{
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0rem 2rem;
+    background-color: rgb(62, 5, 155);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    background-color:rgb(255, 255, 255);
+    color: #fff;
+    position: relative;
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu ul li {
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+.nav-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.logo{
+  /* margin-right: 20rem; */
+  padding: 0.6rem;
+}
+
+.logo a{
+  text-decoration: none;
+  margin-top: 1rem;
+  color:  #f0a500;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+  
+
+.menu-container {
+    position: relative;
+    padding: 0rem 1rem;
+  }
+  
+  /* Style the menu button */
+  .flexer .menu-button {
+    background-color: white;
+    color:rgba(116, 0, 0, 1);
+   border-style: solid;
+   border-width: 2px;
+   border-color: rgba(116, 0, 0, 1);
+    padding:7px 20px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .flexer button{
+    background-color: rgba(116, 0, 0, 1);
+    color: rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgba(116, 0, 0, 1);
+    padding: 7px 20px;
+  }
+  
+  /* Style the menu items container */
+  .menu-items {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 70%;
+  }
+  
+  /* Style the menu items */
+  .menu-items ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu-items li {
+    margin-bottom: 10px;
+    padding: 0.5rem;
+  }
+  
+  .menu-items a {
+    color: rgba(116, 0, 0, 1);
+    text-decoration: none;
+  }
+  
+  .menu-items img{
+    width: 1.5rem;
+  }
+  
+  /* Show the menu items on click */
+  .menu-button:focus + .menu-items {
+    display: block;
+  }
+  
+  /* Hide the menu items when clicked outside */
+  .menu-container:focus-within .menu-items {
+    display: block;
+  }
+  
+  .menu-container:not(:focus-within) .menu-items {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+        position: absolute;
+        top: 30px;
+        right: 30px;
+    }
+
+    .signup-btn {
+        display: none;
+    }
+
+    .container1 {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .logo{
+        margin-right: rem;
+        padding: 0.6rem;
+        width: 100%;
+    } 
+
+    .navbar{
+        width: 100%;
+    } 
+}
+
+
+.body{
+    display: flex;
+    justify-content: center;
+    padding: 0rem 1rem;
+    background: linear-gradient(45deg, rgba(32, 8, 62, 0) 50%, rgba(242, 148, 25, 0) 50%) no-repeat, url('https://img.freepik.com/free-photo/still-life-stacks-papers-documents_23-2151118338.jpg?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid') center center/cover;
+    gap: 0rem;
+    z-index: -1; /* Place the background behind content */
+    transform: skewY(-deg); 
+}
+
+
+.dashboard-container {
+    /* display: grid; */
+    grid-template-columns: 250px 1fr;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .dashboard-header {
+    grid-column: 1 / -1;
+    background: linear-gradient(45deg, rgba(48, 0, 103, 1) 0%, rgba(87, 2, 183, 0.8) 100%);
+    padding: 1rem 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 6px;
+    color: white;
+  }
+  
+  .profile-settings {
+   
+    align-items: center;
+    justify-content: space-around;
+    
+  }
+  
+  .profile-pic {
+    border-radius: 50%;
+    width: 25px;
+    margin-right: 10px;
+  }
+  
+  .dashboard-sidebar {
+    background: rgb(48, 0, 103);
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 8px;
+  }
+  
+  .dashboard-sidebar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dashboard-sidebar li {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+   
+  }
+
+
+  .dashboard-sidebar li img{
+    width: 14px;
+    margin-bottom: -5px;
+    margin-right: 2px;
+  }
+  
+  .dashboard-sidebar nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .dashboard-main {
+    padding: 0.4rem;
+    background: rgb(255, 255, 255);
+    width: 100%;
+    border: 1px solid #b9b9b9;
+  }
+
+  .user-info{
+    text-align: left;
+    font-size: 6px;
+  }
+
+  .user-info p{
+    margin-top: 5px;
+  }
+
+  .virtual-card-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: rem;
+    /* Blended with your primary color */
+  }
+  
+  .virtual-card {
+    position: relative;
+    width:30px;
+    height: 8px;
+    background: linear-gradient(45deg, rgba(62, 5, 155, 0.9), rgb(164, 0, 0));
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    transform: rotateX(10deg);
+    animation: cardFlip 6s infinite ease-in-out alternate;
+   
+  }
+  
+  @keyframes cardFlip {
+    0% {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+      transform: rotateX(10deg) rotateY(180deg);
+    }
+    100% {
+      transform: rotateX(0deg) rotateY(360deg);
+    }
+  }
+
+  .virtual-card .chip {
+    width: 20px;
+    height: 10px;
+    background: gold;
+    border-radius: 2px;
+  }
+  
+  .virtual-card .card-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: -1.1rem;
+    line-height: 5px;
+  }
+  
+  .virtual-card .card-number {
+    font-size: 4px;
+    letter-spacing: 1px;
+    text-align: left;
+    margin-left: -1rem;
+  }
+  
+  .virtual-card .card-holder,
+  .virtual-card .card-expiry {
+    font-size: 5px;
+    margin-left: -1rem;
+  }
+  
+  .virtual-card .card-brand {
+    font-size:8px ;
+    text-align: right;
+    margin-right: -1rem;
+  }
+
+ 
+
+  .virtual-card .card-details .card-logo img{
+    width: 20px;
+    margin-right: -10rem;
+  }
+  
+  
+  .stats-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-card {
+    background: rgba(87, 2, 183, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 8px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .stat-card span{
+    font-size: 10px;
+  }
+  
+  .count-up {
+    
+    animation: count 2s ease-in-out;
+  }
+  
+  @keyframes count {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .charts-section {
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+  }
+  
+  .activity-feed {
+    margin-top: 2rem;
+    background: rgba(62, 5, 155, 0.3);
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 8px;
+    overflow: hidden;
+  }
+  
+  #activity-list {
+    display: flex;
+    flex-direction: column;
+    animation: scrollUp 10s linear infinite;
+  }
+  
+  @keyframes scrollUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+  }
+
+  footer{
+    background: linear-gradient(45deg, rgb(21, 21, 21) 0%, rgb(4, 0, 24) 100%);
+    padding: 2rem;
+    margin-top: 20rem;
+  }
+  
+  .layer1{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .layer1 h3{
+    color: #fdcb85;
+    font-size: 8px;
+  }
+  
+  .layer1 .one ul a li{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 8px;
+  }
+  
+  .layer1 .two ul a{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 8px;
+  }
+  
+  .layer1 .three ul a{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 8px;
+    
+  }
+  
+  .layer1 .four a li{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 8px;
+  }
+  
+  .layer1 .five ul li{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-size: 8px;
+  }
+  
+  .layer2{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+   
+  }
+  
+  .layer2 .images{
+    display: flex;
+    
+  }
+  
+  .layer2 .images .images1{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .layer2 .images .images1 img{
+    width: 3rem;
+    border-color: white;
+    border-width: 1px;
+    margin-bottom: 7px;
+    margin-right: 10px;
+    
+  }
+
+  .items{
+    display: flex;
+    padding: 0.1rem;
+    justify-content: space-between;
+    gap: 20%;
+    background-color: white;
+  }
+
+
+  .items .items-child .card1{
+    font-size: 5px;
+    width: 50%;
+   background: linear-gradient(45deg, rgba(32, 8, 62, 0) 50%, rgba(242, 148, 25, 0) 50%) no-repeat, url('https://img.freepik.com/free-photo/still-life-stacks-papers-documents_23-2151118338.jpg?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid') center center/cover;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    margin-top: 5px;
+    margin-bottom: 2px;
+    margin-left: 40%;
+    padding: 7px;
+    color: white;
+    text-align: center;
+  }
+
+  .items .items-child .card1 img{
+    width: 0.7rem;
+    border-radius: 20rem;
+  }
+
+  .items .items-child .card1 em{
+    color: red;
+  }
+
+  .tabs{
+    display: grid;
+    justify-content: center;
+    
+  }
+
+  .tabs .tab{
+    
+    color: white;
+    
+    padding: 1rem;
+    margin: 10px 5px;
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.623);
+    border-width: 1px;
+    border-color: rgba(62, 5, 155, 0.587);
+    border-style: solid;
+  }
+
+  .tabs .tab img{
+    width: 3rem;
+  }
+
+  .tabs .tab input{
+    
+  }
+
+  .tabs .tab button{
+    background-color: gold;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px black;
+    padding: 5px;
+    margin-top: 4px;
+  }
+
+  .tab1{
+    display: flex;
+    justify-content: center;
+  }
+
+  .tabs .tab h2{
+    font-size: 14px;
+    color: gold;
+  }
+
+  .tabs .tab .range{
+    font-size: 13px;
+  }
+
+  .tabs .tab input{
+    width: 0.5rem;
+  }
+
+  .tabs .tab h3{
+    font-size: 8px;
+    color: rgb(238, 227, 255);
+  }
+
+  .spend{
+    color: rgba(116, 0, 0, 1);
+    font-size: 13px;
+    display: grid;
+    margin: 5px;
+    background-color: #ffffff60;
+    padding: 1rem 0.5rem;
+    box-shadow: 2px 1px 15px rgba(0, 0, 0, 0.349);  
+  }
+
+ form .spend input{
+    margin: 10px 5px;
+  font-size: 13px;
+  padding: 0.7rem 0.2rem;
+  }
+
+  form .spend-button{
+    background-color: linear-gradient(45deg, rgb(10, 0, 44) 0%, rgb(11, 0, 67) 100%);
+  }
+
+
+
+
+  .container {
+    
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .details {
+    margin-bottom: 20px;
+  }
+   h1{
+    font-size: 11px;
+    font-weight: bold;
+    color: #3e059b;
+  }
+  .details h2 {
+    margin-top: 0;
+    font-size: 10px;
+    color: #3e059b;
+  }
+  .details ul {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0px;
+  }
+  .details li {
+    margin-bottom: 5px;
+    font-size: 8px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #3a3a3a5c;
+  }
+  .details li span {
+    font-weight: bold;
+    font-size: 8px;
+    padding: 4px 10px;
+  }
+
+  .label{
+    background: linear-gradient(45deg, rgb(41, 0, 143) 0%, rgb(11, 0, 67) 100%);
+    padding: 2px 10px;
+    width: 30%;
+    color: white;
+  }
+  .actions {
+    text-align: center;
+  }
+
+  .head{
+    padding: 10px;
+  }
+
+  .head h2{
+    color: #3e059b;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  .bitcoinaddress{
+    background: linear-gradient(45deg, rgb(26, 0, 92) 0%, rgb(11, 0, 67) 100%);
+    padding: 10px;
+  }
+
+  .bitcoinaddress h2{
+    color: gold;
+    font-size: 10px;
+    font-weight: bold;
+    margin: 15px 0px;
+  }
+
+  .bitcoinaddress p{
+    font-size: 8px;
+    margin: 10px 0px;
+    color: white;
+  }
+
+  .btc-address{
+    color: #3e059b;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: white;
+    padding: 5px;
+    box-shadow: 1px 1px 7px black;
+
+  }
+
+  .confirm-button{
+    color: white;
+    background: linear-gradient(45deg, rgb(0, 142, 102) 0%, rgb(6, 126, 0) 100%);
+    padding: 5px 10px;
+    font-size: 8px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 5px;
+    border-style: none;
+  }
+
+  .confirm-button:hover{
+    background: white;
+    color: green;
+    box-shadow: 1px 1px 5px black;
+    padding: 6px 10px;
+    transition: 0.5s ease-in;
+  }
+
+  .cancel-button{
+    color: white;
+    background: linear-gradient(45deg, rgb(142, 0, 0) 0%, rgb(126, 0, 0) 100%);
+    padding: 5px 10px;
+    font-size: 8px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 5px;
+    border-style: none;
+  }
+
+  .cancel-button:hover{
+    background: white;
+    color: rgb(128, 0, 0);
+    box-shadow: 1px 1px 5px black;
+    padding: 6px 10px;
+    transition: 0.5s ease-in;
+  }
+
