@@ -712,3 +712,19 @@ border-top: none;
 .affiliate{
   background: linear-gradient(45deg, rgb(0, 142, 102) 0%, rgb(6, 126, 0) 100%);
 }
+
+.market-section {
+  padding: 20px;
+  text-align: center;
+
+}
+.tradingview-widget-container {
+  position: relative;
+  /* Adjust height as needed */
+  width: 100%;
+}
+
+.tradingview-widget-copyright {
+  margin-top: 10px;
+  font-size: 14px;
+}

@@ -116,11 +116,43 @@
                           <div id="deposit-error" style="color: red;"></div>
                         </div>
                     </form>
-    
-                  
-                 
-              </main>
+              </main>   
         </div>
+<br><br>
+        <section id="market-cap" class="market-section" >
+          <h2>Real-Time Crypto Market</h2>
+          <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container__widget" style="height:calc(100% - 100px);width:100%"></div>
+              <div class="tradingview-widget-copyright">
+                  <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+                      <span class="blue-text">Track all markets on TradingView</span>
+                  </a>
+              </div>
+              
+          </div>
+
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+              {
+                  "width": "100%",
+                  "height": "500",
+                  "autosize": true,
+                  "symbol": "BINANCE:BTCUSDT",
+                  "interval": "60",
+                  "timezone": "America/New_York",
+                  "theme": "light",
+                  "style": "1",
+                  "locale": "en",
+                  "withdateranges": true,
+                  "allow_symbol_change": true,
+                  "calendar": false,
+                  "studies": [
+                      "STD;24h%Volume"
+                  ],
+                  "support_host": "https://www.tradingview.com"
+              }
+              </script>
+      </section>
+     
         <script>
             // Add an event listener to the window load event
     window.addEventListener('load', function() {
@@ -164,8 +196,8 @@
     // Define the planDetails array
     const planDetails = [
       {
-        name: '20% RIO AFTER 48 HOURS',
-        profit: '20%',
+        name: '40% RIO AFTER 48 HOURS',
+        profit: '40%',
         principleReturn: 'Yes',
         creditAmount: '',
         depositFee: '0.00%',
@@ -173,22 +205,22 @@
         period: '2 days',
       },
       {
-        name: '50% RIO AFTER 72 HOURS',
-        profit: '50%',
+        name: '60% RIO WEEKLY',
+        profit: '60%',
         principleReturn: 'Yes',
         creditAmount: '',
         depositFee: '0.00%',
         debitAmount: '',
-        period: '3 days',
+        period: '7 days',
       },
       {
-        name: '100% RIO AFTER 96 HOURS',
-        profit: '100%',
+        name: '80% RIO LONG TERM',
+        profit: '80%',
         principleReturn: 'Yes',
         creditAmount: '',
         depositFee: '0.00%',
         debitAmount: '',
-        period: '4 days',
+        period: '2 days',
       },
       {
         name: '200% RIO AFTER 120 HOURS',

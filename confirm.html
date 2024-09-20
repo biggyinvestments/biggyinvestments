@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invest</title>
+    <meta name="theme-color" content="  #740000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #740000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="./css/invest.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+
+<style>
+
+
+</style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container1">
+            <div class="header-flex">
+                <div class="logo">
+    
+                    <a href="index.html"><img src="" alt=""><img src="./images/biggy logo.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- The menu button -->
+    <div class="menu-container">
+      <div class="flexer">
+        <button class="menu-button">Menu</button>
+        
+      </div>
+      <!-- The menu items container -->
+      <div class="menu-items">
+        <!-- Menu items -->
+        <ul>
+          <li><a href="#">Account</a></li><hr style="">
+    
+          <li><a href="invest.html">Your Dashboard</a></li><hr>
+    
+          <li><a href="earning-history.html">Earning History</a></li><hr>
+    
+          <li><a href="user-withdrawal.html">Withdraw</a></li><hr>
+    
+          <li><a href="#">Withdrawal History</a></li><hr>
+    
+          <li><a href="#">Edit Profile</a></li><hr>
+    
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="dashboard-container">  
+            <main class="dashboard-main"></main>
+                <div class="head"><h2>DEPOSIT</h2></div>
+                    <div class="bitcoinaddress">
+                        <h3>PLEASE CONFIRM YOUR DEPOSIT</h3>
+                        <p>Please send payment to the bitcoin address bellow</p>
+                        <p>Make sure to only send exact amount in BTC</p>
+                        <p>Kindly note that your deposit will automatically be confirmed after 2 blockchain verifications</p>
+                        <div class="btc-address">bc1qx35fshkjv3jyrr0xgta36z09lrlqaznj080k8d</div>
+                        <button class="confirm-button">COPY WALLET ADDRESS</button>
+                    </div>
+                <div class="container">
+                    <div class="header">
+                      <h1>Confirm Deposit</h1>
+                    </div>
+                    <div class="details">
+                      <h2>Plan Details</h2>
+                      <ul>
+                        <li>
+                          <span class="label">Plan Name:</span> <span id="plan-name"></span>
+                        </li>
+                        <li>
+                          <span class="label">Profit:</span> <span id="plan-profit"></span>
+                        </li>
+                        <li>
+                          <span class="label">Principle Return:</span> <span id="plan-principle-return"></span>
+                        </li>
+                        <li>
+                          <span class="label">Credit Amount:</span> <span id="plan-credit-amount"></span>
+                        </li>
+                        <li>
+                          <span class="label">Deposit Fee:</span> <span id="plan-deposit-fee"></span>
+                        </li>
+                        <li>
+                          <span class="label">Debit Amount:</span> <span id="plan-debit-amount"></span>
+                        </li>
+                        <li>
+                            <span class="label">Deposit Method:</span> <span id="deposit-method"></span>
+                          </li>
+                      </ul>
+                    </div>
+                    <div class="actions">
+                      <button id="confirm-button" class="confirm-button">Confirm Deposit</button>
+                      <button id="cancel-button" class="cancel-button">Cancel</button>
+                    </div>
+                  </div>
+            </main>
+    </div><br><br>
+        
+
+    <section id="market-cap" class="market-section" ></section>
+        <h2>Real-Time Crypto Market</h2>
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget" style="height:calc(100% - 100px);width:100%"></div>
+            <div class="tradingview-widget-copyright">
+                <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+                    <span class="blue-text">Track all markets on TradingView</span>
+                </a>
+            </div>
+            
+        </div>
+
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+            {
+                "width": "100%",
+                "height": "500",
+                "autosize": true,
+                "symbol": "BINANCE:BTCUSDT",
+                "interval": "60",
+                "timezone": "America/New_York",
+                "theme": "light",
+                "style": "1",
+                "locale": "en",
+                "withdateranges": true,
+                "allow_symbol_change": true,
+                "calendar": false,
+                "studies": [
+                    "STD;24h%Volume"
+                ],
+                "support_host": "https://www.tradingview.com"
+            }
+            </script>
+    </section>
+
+
+    <script>
+
+        // Define the planDetails object
+    const planDetails = [
+    {
+        name: '40% RIO AFTER 48 HOURS',
+        profit: '40%',
+        principleReturn: 'Yes',
+        creditAmount: '',
+        depositFee: '0.00%',
+        debitAmount: '',
+        period: '2 days',
+      },
+      {
+        name: '60% RIO WEEKLY',
+        profit: '60%',
+        principleReturn: 'Yes',
+        creditAmount: '',
+        depositFee: '0.00%',
+        debitAmount: '',
+        period: '7 days',
+      },
+      {
+        name: '80% RIO LONG TERM',
+        profit: '80%',
+        principleReturn: 'Yes',
+        creditAmount: '',
+        depositFee: '0.00%',
+        debitAmount: '',
+        period: '2 days',
+      },
+      {
+        name: '200% RIO AFTER 120 HOURS',
+        profit: '200%',
+        principleReturn: 'Yes',
+        creditAmount: '',
+        depositFee: '0.00%',
+        debitAmount: '',
+      },
+    ];
+  
+    function handleConfirmPage() {
+      // Get the plan, deposit method, and credit amount from the URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const plan = urlParams.get('plan');
+      const depositMethod = urlParams.get('deposit-method');
+      const creditAmount = urlParams.get('credit-amount');
+  
+      // Retrieve the plan details based on the selected plan
+      const planDetail = planDetails.find((plan) => plan.name === urlParams.get('plan'));
+  
+      if (planDetail) {
+        // Calculate the debit amount
+        const debitAmount = parseFloat(creditAmount) + (parseFloat(creditAmount) * (parseFloat(planDetail.depositFee.replace('%', '')) / 100));
+  
+        // Display the plan details
+        document.querySelector('#plan-name').innerHTML = planDetail.name;
+        // document.querySelector('#plan-profit').innerHTML = planDetail.profit;
+        document.querySelector('#plan-principle-return').innerHTML = planDetail.principleReturn;
+        document.querySelector('#plan-credit-amount').innerHTML = `$${creditAmount}`;
+        document.querySelector('#plan-deposit-fee').innerHTML = planDetail.depositFee;
+        document.querySelector('#plan-debit-amount').innerHTML = `$${debitAmount.toFixed(2)}`;
+        document.querySelector('#deposit-method').innerHTML = depositMethod;
+  
+        // Add event listeners to the buttons
+        document.querySelector('#confirm-button').addEventListener('click', confirmDeposit);
+        document.querySelector('#cancel-button').addEventListener('click', cancelDeposit);
+      } else {
+        console.error(`Plan ${plan} not found`);
+      }
+    }
+  
+    function confirmDeposit(e) {
+    e.preventDefault();
+  
+    // Get the username from local storage
+    const username = localStorage.getItem('username');
+  
+    // Get the plan details (already existing logic)
+    const planName = document.querySelector('#plan-name').innerHTML.replace('%', '').replace(/\s+/g, '_').replace(/_/g, '-');
+    const planPrincipleReturn = document.querySelector('#plan-principle-return').innerHTML;
+    const planCreditAmount = document.querySelector('#plan-credit-amount').innerHTML.replace('$', '');
+    const planDepositFee = document.querySelector('#plan-deposit-fee').innerHTML.replace('%', '');
+    const planDebitAmount = document.querySelector('#plan-debit-amount').innerHTML.replace('$', '');
+  
+    // Get the deposit method passed from the invest page (balance or bitcoin)
+    const depositMethod = document.querySelector('#deposit-method').innerHTML;
+  
+    // Create the depositAmount from planDebitAmount
+    const depositAmount = parseFloat(planDebitAmount);
+  
+    console.log('username:', username);
+    console.log('planName:', planName);
+    console.log('planPrincipleReturn:', planPrincipleReturn);
+    console.log('planCreditAmount:', planCreditAmount);
+    console.log('planDepositFee:', planDepositFee);
+    console.log('planDebitAmount:', planDebitAmount);
+    console.log('depositMethod:', depositMethod); // Dynamically passed from the invest page
+    console.log('depositAmount:', depositAmount);
+  
+    // Send the deposit details to the server for further processing (deduction, etc.)
+    fetch('/api/deposit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: username,
+        planName: planName,
+        planPrincipleReturn: planPrincipleReturn,
+        planCreditAmount: parseFloat(planCreditAmount),
+        planDepositFee: parseFloat(planDepositFee) / 100,
+        planDebitAmount: depositAmount,
+        depositMethod: depositMethod,  // Send this deposit method to determine whether it's from balance or bitcoin
+        depositAmount: depositAmount
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        console.log('Deposit successful!');
+        alert('The deposit has been saved. Your investment plan will resume and automatically be displayed on your ACTIVE DEPOSITS tab when admin confirms transaction on blockchain. Redirecting to the dashboard...');
+  
+        window.location.href = 'dashboard.html'; // Redirect to dashboard
+      } else {
+        console.log('Error:', data.error);
+      }
+    })
+    .catch(error => {
+      console.log('Error:', error);
+    });
+  }
+  
+  // Function to cancel deposit
+  function cancelDeposit(e) {
+    e.preventDefault();
+    window.location.href = 'dashboard.html'; // Redirect to dashboard
+  }
+  
+  document.addEventListener('DOMContentLoaded', handleConfirmPage);
+  
+  
+  
+  
+        </script>
+</body>
+</html>
