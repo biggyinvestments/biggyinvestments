@@ -496,7 +496,7 @@ app.post('/api/withdraw', (req, res) => {
                       console.error('Error updating balance:', error);
                       return res.status(500).json({ message: 'Error updating balance.' });
                   }
-                  res.json({ message: 'Withdrawal request submitted successfully. Your is still pending until Admin confirms statistics' });
+                  res.json({ message: 'Withdrawal request submitted successfully. Your withdrawal is still pending until Admin confirms statistics' });
               }
           );
       }
@@ -883,6 +883,78 @@ app.post('/api/admin/add-bonus', (req, res) => {
       });
   });
 });
+
+
+
+
+app.get('/get-account-details', (req, res) => {
+  const username = req.query.username;
+
+  if (!username) {
+      return res.json({ success: false, message: "Username is required." });
+  }
+
+  // Get a connection from the pool
+  pool.getConnection((err, connection) => {
+      if (err) {
+          return res.json({ success: false, message: "Error connecting to the database." });
+      }
+
+      // Query user data based on the username to get user_id
+      const userQuery = `SELECT id, full_name, username, created_at, balance FROM users WHERE username = ?`;
+      connection.query(userQuery, [username], (err, userResults) => {
+          if (err) {
+              connection.release(); // Release connection back to the pool
+              return res.json({ success: false, message: "Error fetching user data." });
+          }
+
+          if (userResults.length === 0) {
+              connection.release(); // Release connection back to the pool
+              return res.json({ success: false, message: "User not found." });
+          }
+
+          const user = userResults[0];
+          const userId = user.id;
+
+          // Query approved deposits using user_id
+          const approvedDepositsQuery = `SELECT amount, date FROM deposits WHERE user_id = ? AND status = 'approved'`;
+          connection.query(approvedDepositsQuery, [userId], (err, approvedDeposits) => {
+              if (err) {
+                  connection.release(); // Release connection back to the pool
+                  return res.json({ success: false, message: "Error fetching approved deposits." });
+              }
+
+              // Query pending deposits using user_id
+              const pendingDepositsQuery = `SELECT amount, date FROM deposits WHERE user_id = ? AND status = 'pending'`;
+              connection.query(pendingDepositsQuery, [userId], (err, pendingDeposits) => {
+                  connection.release(); // Release connection after the last query
+
+                  if (err) {
+                      return res.json({ success: false, message: "Error fetching pending deposits." });
+                  }
+
+                  // Return account details, approved deposits, and pending deposits
+                  res.json({
+                      success: true,
+                      full_name: user.full_name,
+                      username: user.username,
+                      created_at: user.created_at,
+                      balance: user.balance,
+                      approvedDeposits: approvedDeposits,
+                      pendingDeposits: pendingDeposits
+                  });
+              });
+          });
+      });
+  });
+});
+
+
+
+
+
+
+
 
 
 
