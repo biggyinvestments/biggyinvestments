@@ -1,101 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>Memecointech Dashboard</title>
-    <meta name="theme-color" content=" #3e059b">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invest</title>
+    <meta name="theme-color" content="  #740000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #740000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Your Website">
-    <meta name="apple-mobile-web-app-status-bar-style" content=" #3e059b">
     <link rel="stylesheet" href="./css/dashboard.css">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&family=Protest+Guerrilla&display=swap" rel="stylesheet">
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
 
 
-    
+</style>
 </head>
-
 <body>
-
-    <div class="circle">
-
-    </div>
-    <header>
-      
-      <a href="index.html"><div class="logo" > <section class="gear-container">
-        <div class="large-gear">
-          <div class="small-gear"></div>
-          <div class="small-gear"></div>
-          <div class="small-gear"></div>
-        </div>
-      </section>MemecoinTech</div></a>
-        <nav>
-          <ul>
-            <a href="signup.html"><li>SIGN UP</li></a>
-           
-            <a href="index.html"><li>HOME</li></a>
-            <a href="faq.html"><li>FAQ</li></a>
-            <a href="terms.html"><li>TERMS</li></a>
-            <a href="support.html"><li>SUPPORT</li></a>
-          </ul>
-            
-        </nav>
-    </header>
-    <div class="dashboard-container">
-        <div class="body">
-            <aside class="dashboard-sidebar">
-                <nav>
-                  <ul>
-                    <li><a href="dashboard.html"><img src="https://cdn-icons-png.freepik.com/256/16108/16108349.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Account</a></li><hr style="">
+    <header class="navbar">
+        <div class="container1">
+            <div class="header-flex">
+                <div class="logo">
     
-                    <li><a href="invest.html"><img src="https://cdn-icons-png.freepik.com/256/12477/12477651.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Make Deposit</a></li><hr>
-    
-                    <li><a href="#"><img src="https://cdn-icons-png.freepik.com/256/15017/15017061.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Earning History</a></li><hr>
-    
-                    <li><a href="#"><img src="https://cdn-icons-png.freepik.com/256/12477/12477651.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Withdraw</a></li><hr>
-    
-                    <li><a href="#"><img src="https://cdn-icons-png.freepik.com/256/13843/13843283.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Withdrawal History</a></li><hr>
-    
-                    <li><a href="#"><img src="https://cdn-icons-png.freepik.com/256/3503/3503638.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Edit Profile</a></li><hr>
-    
-                    <li><a href="#"><img src="https://cdn-icons-png.freepik.com/256/11302/11302228.png?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid" alt="">Logout</a></li>
-                  </ul>
-                </nav>
-              </aside>
-              <main class="dashboard-main">
-
-                <header class="dashboard-header">
-                  <div class="user-info">
-                    <p><strong>Balance:</strong> <span id="balance"></span></p>
-                  </div>
-                 
-                  <div class="profile-settings">
-                    <p><strong>Bitcoin Address:</strong> <span id="bitcoin_address"></span></p>
-       
-                   
-                  </div>
-                </header>
-
-                <div class="itemsa">
-                  <form id="withdraw-form" >
-                    <div class="form-flex">
-                      <label for="withdraw-amount">Withdrawal Amount</label>
-                    <input type="number" id="withdraw-amount" name="withdraw-amount" placeholder="0.00" required>
-                    </div>
-                    
-                    <button type="submit">Submit Withdrawal</button>
-                </form>
-                
-                    <p id="message"></p>
+                    <a href="index.html"><img src="" alt=""><img src="./images/biggy logo.png" alt=""></a>
                 </div>
+            </div>
+        </div>
+    </header>
+    <!-- The menu button -->
+    <div class="menu-container">
+      <div class="flexer">
+        <button class="menu-button">Menu</button>
+        
+      </div>
+      <!-- The menu items container -->
+      <div class="menu-items">
+        <!-- Menu items -->
+        <ul>
+          <li><a href="#">Account</a></li><hr style="">
+    
+          <li><a href="dashboard.html">Back to Dashboard << </a></li><hr>
+    
+          <li><a href="earning-history.html">Earning History</a></li><hr>
+    
+          <!-- <li><a href="user-withdrawal.html">Withdraw</a></li><hr> -->
+    
+          <li><a href="#">Withdrawal History</a></li><hr>
+    
+          <li><a href="#">Edit Profile</a></li><hr>
+    
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div> 
+    </div><br>
+    
+    <div class="body">
+      <header class="dashboard-header">
+        <div class="user-info">
+          <p><strong>Balance:</strong> <span id="balance"></span></p>
+        </div>
+       
+        <div class="profile-settings">
+          <p><strong>Bitcoin Address:</strong> <span id="bitcoin_address"></span></p>
+  
+         
+        </div>
+      </header><br><br>
+  
+                  <div class="itemsa">
+                    <form id="withdraw-form" >
+                      <div class="form-flex">
+                        <label for="withdraw-amount">Withdrawal Amount</label>
+                      <input type="number" id="withdraw-amount" name="withdraw-amount" placeholder="0.00" required>
+                      </div><br>
+                      
+                      <button type="submit">Submit Withdrawal</button>
+                  </form>
+                  
+                      <p id="message"></p>
+                  </div>
+    </div>
+    
               </main>
         </div>
     </div>
+    <br><br><br><br><br><hr>
+    <section id="market-cap" class="market-section" >
+      <h2>Real-Time Crypto Market</h2>
+      <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget" style="height:calc(100% - 100px);width:100%"></div>
+          <div class="tradingview-widget-copyright">
+              <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+                  <span class="blue-text">Track all markets on TradingView</span>
+              </a>
+          </div>
+          
+      </div>
+
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+          {
+              "width": "100%",
+              "height": "500",
+              "autosize": true,
+              "symbol": "BINANCE:BTCUSDT",
+              "interval": "60",
+              "timezone": "America/New_York",
+              "theme": "light",
+              "style": "1",
+              "locale": "en",
+              "withdateranges": true,
+              "allow_symbol_change": true,
+              "calendar": false,
+              "studies": [
+                  "STD;24h%Volume"
+              ],
+              "support_host": "https://www.tradingview.com"
+          }
+          </script>
+  </section>
 
     <footer>
       <div class="layer1">
@@ -131,7 +158,7 @@
           <h3>CONATCT</h3>
           <ul>
             <li>AMINISTRATOR OFFICE</li>
-            <li>@memecointech.dev.support</li>
+            <li>@biggyassets.dev.support</li>
           </ul>
         </div>
       </div><br>
@@ -160,13 +187,10 @@
           </div>
         </div>
         <div class="footer-logo">
-          <a href="index.html"><div class="logo" > <section class="gear-container">
-            <div class="large-gear">
-              <div class="small-gear"></div>
-              <div class="small-gear"></div>
-              <div class="small-gear"></div>
-            </div>
-          </section>MemecoinTech</div></a>
+          <div class="logo">
+    
+            <a href="index.html"><img src="" alt=""><img src="./images/biggy logo.png" alt=""></a>
+        </div>
         </div>
       </div>
     </footer>

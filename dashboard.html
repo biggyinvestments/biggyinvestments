@@ -53,7 +53,7 @@
   <div class="menu-items">
     <!-- Menu items -->
     <ul>
-      <li><a href="#">Account</a></li><hr style="">
+      <li><a href="get-account-details.html">Account</a></li><hr style="">
 
       <li><a href="invest.html">Make Deposit</a></li><hr>
 
@@ -170,14 +170,18 @@
               <tr>
                <td>Withdrew Total:</td>
                <td class="text-right">$ <span id="totalWithdrawn">0</span></td>
-              </tr><tr>
-               <td>Earned Total:</td>
-              <td class="text-right">$<span id="totalEarned">0</span></td>
               </tr>
+              
            
              <tr>
               <td>Total Approved Deposit:</td>
               <td class="text-right">$<span id="totalDeposits">0</span></td>
+             </tr>
+           
+              
+             <tr>
+              <td>Last Withdrawal:</td>
+              <td class="text-right">$<span id="lastWithdrawal">0</span></td>
              </tr>
             </tbody></table>
 
@@ -230,8 +234,81 @@
     </div>
     
 </div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<footer>
+  <div class="layer1">
+    <div class="one">
+      <h3>Useful links</h3>
+       <ul>
+        <a href="index.html"><li>HOME</li></a>
+        <a href="about.html"><li>About</li></a>
+       </ul>
+    </div>
+  
+    <div class="two">
+      <ul>
+        <a href="signup.html">Register</a>
+        <a href="terms.html">Rules</a>
+      </ul>
+    </div>
+  
+    <div class="three">
+      <ul>
+        <a href="faq.html"><li>FAQ</li></a>
+        <a href="support.html"><li>Support</li></a>
+      </ul>
+    </div>
+  
+    <div class="four">
+      <h3>My Account</h3>
+      <a href="signin.html"><li>Personal account</li></a>
+      <a href="signin.html"><li>Make a deposit</li></a>
+    </div>
+  
+    <div class="five">
+      <h3>CONATCT</h3>
+      <ul>
+        <li>AMINISTRATOR OFFICE</li>
+        <li>@biggyassets.dev.support</li>
+      </ul>
+    </div>
+  </div><br>
+  <hr style="border-color: rgb(151, 148, 193);">
+
+  <div class="layer2">
+   
+    <div class="images">
+      <div class="images1">
+        <img src="https://zenchainfinance.com/images/pay1.png" alt="">
+        <img src="https://zenchainfinance.com/images/pay7.png" alt="">
+        <img src="https://zenchainfinance.com/images/pay10.png" alt="">
+        <img src="https://zenchainfinance.com/images/pay4.png" alt="">
+      </div>
+      <div class="images1">
+        <img src="https://zenchainfinance.com/images/pay3.png" alt="">
+        <img src="https://zenchainfinance.com/images/pay6.png" alt="">
+        <img src="https://zenchainfinance.com/images/pay9.png" alt="">
+        <img src="https://zenchainfinance.com/images/pay12.png" alt="">
+      </div>
+      <div class="images1">
+        <img src="https://zenchainfinance.com/images/pay2.png" alt="">
+        <img src="https://zenchainfinance.com/images/pay5.png" alt="">
+        <img src="https://zenchainfinance.com/images/pay8.png" alt="">
+        <img src="https://zenchainfinance.com/images/pay11.png" alt="">
+      </div>
+    </div>
+    <div class="footer-logo">
+      <div class="logo">
+
+        <a href="index.html"><img src="" alt=""><img src="./images/biggy logo.png" alt=""></a>
+    </div>
+    </div>
+  </div>
+</footer>
 
 <script>
+  // Client-side JavaScript code
   // Client-side JavaScript code
   const username = localStorage.getItem('username');
 fetch(`/users?username=${username}`, {
@@ -247,8 +324,8 @@ fetch(`/users?username=${username}`, {
   if (Array.isArray(data)) {
     
     const userData = data[0];
-    document.getElementById('username').innerHTML = ` ${userData.username}`;
-    document.getElementById('balance').innerHTML = ` ${userData.balance}`;
+    document.getElementById('username').innerHTML = `Username: ${userData.username}`;
+    document.getElementById('balance').innerHTML = `Balance: ${userData.balance}`;
     document.getElementById('total-withdrawals').innerHTML = `Total Withdrawals: ${userData.total_withdrawals}`;
     document.getElementById('total-deposits').innerHTML = `Total Deposits: ${userData.total_deposits}`;
     document.getElementById('created-at').innerHTML = `Created at: ${userData.created_at}`;

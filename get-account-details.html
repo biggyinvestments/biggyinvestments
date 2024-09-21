@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <meta name="theme-color" content="  #740000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #740000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+
+<style>
+
+
+</style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container1">
+        <div class="header-flex">
+            <div class="logo">
+
+                <a href="index.html"><img src="" alt=""><img src="./images/biggy logo.png" alt=""></a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#news">Crypto News</a></li>
+                    <li><a href="#partners">Partners</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <button class="signup-btn">Sign Up</button>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- The menu button -->
+<div class="menu-container">
+  <div class="flexer">
+    <button class="menu-button">Menu</button>
+    <a href="invest.html"><button>Invest Now</button></a>
+  </div>
+  <!-- The menu items container -->
+  <div class="menu-items">
+    <!-- Menu items -->
+    <ul>
+      <li><a href="dashboard.html">Back to Dashboard << </a></li><hr style="">
+
+      <li><a href="invest.html">Make Deposit</a></li><hr>
+
+      <li><a href="earning-history.html">Earning History</a></li><hr>
+
+      <li><a href="user-withdrawal.html">Withdraw</a></li><hr>
+
+      <li><a href="#">Withdrawal History</a></li><hr>
+
+      <li><a href="#">Edit Profile</a></li><hr>
+
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+</div>  
+</div>
+
+<h2 style="text-align: center; margin-top: 1rem;">Account Details</h2>
+<!-- Add this div for the account details -->
+<div class="account-things" id="account-details"></div><br><br>
+
+
+<section id="market-cap" class="market-section" >
+    <h2>Real-Time Crypto Market</h2>
+    <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget" style="height:calc(100% - 100px);width:100%"></div>
+        <div class="tradingview-widget-copyright">
+            <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+                <span class="blue-text">Track all markets on TradingView</span>
+            </a>
+        </div>
+        
+    </div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+        {
+            "width": "100%",
+            "height": "500",
+            "autosize": true,
+            "symbol": "BINANCE:BTCUSDT",
+            "interval": "60",
+            "timezone": "America/New_York",
+            "theme": "light",
+            "style": "1",
+            "locale": "en",
+            "withdateranges": true,
+            "allow_symbol_change": true,
+            "calendar": false,
+            "studies": [
+                "STD;24h%Volume"
+            ],
+            "support_host": "https://www.tradingview.com"
+        }
+        </script>
+
+<footer>
+    <div class="layer1">
+      <div class="one">
+        <h3>Useful links</h3>
+         <ul>
+          <a href="index.html"><li>HOME</li></a>
+          <a href="about.html"><li>About</li></a>
+         </ul>
+      </div>
+    
+      <div class="two">
+        <ul>
+          <a href="signup.html">Register</a>
+          <a href="terms.html">Rules</a>
+        </ul>
+      </div>
+    
+      <div class="three">
+        <ul>
+          <a href="faq.html"><li>FAQ</li></a>
+          <a href="support.html"><li>Support</li></a>
+        </ul>
+      </div>
+    
+      <div class="four">
+        <h3>My Account</h3>
+        <a href="signin.html"><li>Personal account</li></a>
+        <a href="signin.html"><li>Make a deposit</li></a>
+      </div>
+    
+      <div class="five">
+        <h3>CONATCT</h3>
+        <ul>
+          <li>AMINISTRATOR OFFICE</li>
+          <li>@biggyassets.dev.support</li>
+        </ul>
+      </div>
+    </div><br>
+    <hr style="border-color: rgb(151, 148, 193);">
+  
+    <div class="layer2">
+     
+      <div class="images">
+        <div class="images1">
+          <img src="https://zenchainfinance.com/images/pay1.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay7.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay10.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay4.png" alt="">
+        </div>
+        <div class="images1">
+          <img src="https://zenchainfinance.com/images/pay3.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay6.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay9.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay12.png" alt="">
+        </div>
+        <div class="images1">
+          <img src="https://zenchainfinance.com/images/pay2.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay5.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay8.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay11.png" alt="">
+        </div>
+      </div>
+      <div class="footer-logo">
+        <div class="logo">
+  
+          <a href="index.html"><img src="" alt=""><img src="./images/biggy logo.png" alt=""></a>
+      </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+        // Get the username from local storage
+        const username = localStorage.getItem('username');
+        
+        if (!username) {
+            document.getElementById('account-details').innerHTML = "No user logged in.";
+            return;
+        }
+
+        // Make an API request to fetch account details
+        fetch(`/get-account-details?username=${username}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('account-details').innerHTML = `
+                    <h3>Basic Details</h3>
+                        <div class="account-tab">
+                            
+                        <p>Full Name: ${data.full_name}</p>
+                        <p>Username: ${data.username}</p>
+                        <p>Account Created At: ${data.created_at}</p>
+                        <p>Balance: ${data.balance}</p>
+                        </div>   <br>                
+                        
+                       
+                        <h3>Deposit History</h3>
+                         <div class="account-tab">
+                            <h4>Approved Deposits:</h4>
+                            ${data.approvedDeposits.map(deposit => `
+                                <p>Amount: ${deposit.amount}, Date: ${deposit.date}</p>
+                            `).join('')}
+                            <h4>Pending Deposits:</h4>
+                            ${data.pendingDeposits.map(deposit => `
+                                <p>Amount: ${deposit.amount}, Date: ${deposit.date}</p>
+                            `).join('')}
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('account-details').innerHTML = "Failed to fetch account details.";
+                }
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                document.getElementById('account-details').innerHTML = "Error fetching account details.";
+            });
+    });
+</script>
+
+</body>
+</html>
