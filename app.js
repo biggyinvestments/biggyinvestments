@@ -1051,6 +1051,33 @@ function updateProfile(connection, username, full_name, bitcoin_address, contact
 }
 
 
+app.get('/get-withdrawal-history', (req, res) => {
+  const username = req.query.username;
+
+  if (!username) {
+      return res.json({ success: false, message: "Username is required." });
+  }
+
+  pool.getConnection((err, connection) => {
+      if (err) {
+          return res.json({ success: false, message: "Error connecting to the database." });
+      }
+
+      // Fetch all withdrawals (both pending and approved)
+      const withdrawalQuery = `SELECT amount, status, request_date, approved_date FROM pending_withdrawals WHERE username = ?`;
+
+      connection.query(withdrawalQuery, [username], (err, results) => {
+          connection.release(); // Release connection back to the pool
+          
+          if (err) {
+              return res.json({ success: false, message: "Error fetching withdrawal history." });
+          }
+
+          res.json({ success: true, withdrawals: results });
+      });
+  });
+});
+
 
 
 
