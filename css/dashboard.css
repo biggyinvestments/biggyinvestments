@@ -603,12 +603,13 @@ input:hover{
 label{
   font-size: 13px;
   padding: 10px 3px;
-  border-style: solid;
+  /* border-style: solid; */
   border-width: 1px;
   border-color:  rgba(116, 0, 0, 1);
   border-left: none;
   border-top: none;
   border-bottom: none;
+  text-align: left;
 }
 
 form button{
@@ -834,4 +835,3 @@ footer{
   border-right: none;
 }
 
-.account-tab 

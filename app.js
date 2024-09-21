@@ -951,6 +951,104 @@ app.get('/get-account-details', (req, res) => {
 
 
 
+// Route to get user details for profile page (excluding email)
+app.get('/get-user-profile', (req, res) => {
+  const username = req.query.username;
+
+  if (!username) {
+    return res.json({ success: false, message: 'Username is required.' });
+  }
+
+  pool.getConnection((err, connection) => {
+    if (err) {
+      return res.json({ success: false, message: 'Error connecting to the database.' });
+    }
+
+    const userQuery = `SELECT full_name, bitcoin_address, email FROM users WHERE username = ?`;
+    connection.query(userQuery, [username], (err, userResult) => {
+      connection.release();
+
+      if (err) {
+        return res.json({ success: false, message: 'Error fetching user data.' });
+      }
+
+      if (userResult.length === 0) {
+        return res.json({ success: false, message: 'User not found.' });
+      }
+
+      res.json({
+        success: true,
+        full_name: userResult[0].full_name,
+        bitcoin_address: userResult[0].bitcoin_address,
+        email: userResult[0].email,
+      });
+    });
+  });
+});
+
+// Route to handle profile updates
+app.post('/update-profile', (req, res) => {
+  const { username, full_name, bitcoin_address, email, current_password, new_password, confirm_password } = req.body;
+
+  if (!username || !full_name || !bitcoin_address || !email) {
+    return res.json({ success: false, message: 'All fields are required.' });
+  }
+
+  pool.getConnection((err, connection) => {
+    if (err) {
+      return res.json({ success: false, message: 'Error connecting to the database.' });
+    }
+
+    // Validate current password if password is being changed
+    if (new_password) {
+      const passwordQuery = `SELECT password FROM users WHERE username = ?`;
+      connection.query(passwordQuery, [username], (err, passwordResult) => {
+        if (err) {
+          connection.release();
+          return res.json({ success: false, message: 'Error verifying password.' });
+        }
+
+        const storedPassword = passwordResult[0].password;
+        if (storedPassword !== current_password) {
+          connection.release();
+          return res.json({ success: false, message: 'Current password is incorrect.' });
+        }
+
+        if (new_password !== confirm_password) {
+          connection.release();
+          return res.json({ success: false, message: 'New password and confirmation do not match.' });
+        }
+
+        // Proceed with password and profile updates
+        updateProfile(connection, username, full_name, bitcoin_address, contact_info, new_password, res);
+      });
+    } else {
+      // Update profile without changing password
+      updateProfile(connection, username, full_name, bitcoin_address, email, null, res);
+    }
+  });
+});
+
+function updateProfile(connection, username, full_name, bitcoin_address, contact_info, new_password, res) {
+  let updateQuery = `UPDATE users SET full_name = ?, bitcoin_address = ?, contact_info = ?`;
+  const params = [full_name, bitcoin_address, email, username];
+
+  if (new_password) {
+    updateQuery += `, password = ?`;
+    params.unshift(new_password);
+  }
+
+  updateQuery += ` WHERE username = ?`;
+
+  connection.query(updateQuery, params, (err, result) => {
+    connection.release();
+    if (err) {
+      return res.json({ success: false, message: 'Error updating profile.' });
+    }
+
+    res.json({ success: true, message: 'Profile updated successfully.' });
+  });
+}
 
 
 

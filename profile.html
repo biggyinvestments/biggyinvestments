@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <meta name="theme-color" content="  #740000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #740000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+
+<style>
+
+
+</style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container1">
+        <div class="header-flex">
+            <div class="logo">
+
+                <a href="index.html"><img src="" alt=""><img src="./images/biggy logo.png" alt=""></a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#news">Crypto News</a></li>
+                    <li><a href="#partners">Partners</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <button class="signup-btn">Sign Up</button>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- The menu button -->
+<div class="menu-container">
+  <div class="flexer">
+    <button class="menu-button">Menu</button>
+    <a href="invest.html"><button>Invest Now</button></a>
+  </div>
+  <!-- The menu items container -->
+  <div class="menu-items">
+    <!-- Menu items -->
+    <ul>
+      <li><a href="get-account-details.html">Account</a></li><hr style="">
+
+      <li><a href="invest.html">Make Deposit</a></li><hr>
+
+      <li><a href="earning-history.html">Earning History</a></li><hr>
+
+      <li><a href="user-withdrawal.html">Withdraw</a></li><hr>
+
+      <li><a href="#">Withdrawal History</a></li><hr>
+
+      <li><a href="#">Edit Profile</a></li><hr>
+
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+</div>
+
+    
+</div>
+
+  <div class="dashboard-container"> 
+    <div class="body">    
+    <!-- <div id="user-data">   -->
+          <main class="dashboard-main">
+            <h2>Edit Profile</h2>
+
+    <!-- Form for updating profile details -->
+    <form id="profile-form" class="update-form">
+        <table>
+            <tr>
+                <td><label for="full_name">Full Name:</label></td>
+                <td class="text-right"><input type="text" id="full_name" name="full_name" style="width: 100%;"></td>
+            </tr>
+            <tr>
+                <td><label for="bitcoin_address">Bitcoin Address:</label></td>
+                <td class="text-right"> <input type="text" id="bitcoin_address" name="bitcoin_address"  style="width: 100%;"></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="contact_info">Contact Info:</label>
+                </td>
+                <td class="text-right">
+                    <input type="text" id="contact_info" name="contact_info" style="width: 100%;">
+                </td>
+            </tr>
+        </table>
+       
+<br>
+
+        <h3>Change Password (Optional)</h3>
+        <table>
+            <tr>
+                <td>
+                    <label for="current_password">Current Password:</label>
+                </td>
+                <td class="text-right">
+                    <input type="password" id="current_password" name="current_password" style="width: 100%;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="new_password">New Password:</label>
+                </td>
+                <td class="text-right"><input type="password" id="new_password" name="new_password" style="width: 100%;"></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="confirm_password">Confirm New Password:</label>
+                </td>
+                <td class="text-right">
+                    <input type="password" id="confirm_password" name="confirm_password" style="width: 100%;">
+                </td>
+            </tr>
+        </table><br>
+
+        
+        
+
+        
+
+        <button type="submit">Update Profile</button>
+    </form>
+
+    <div id="message"></div>
+
+          </main>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+    {
+        "width": "100%",
+        "height": "500",
+        "autosize": true,
+        "symbol": "BINANCE:BTCUSDT",
+        "interval": "60",
+        "timezone": "America/New_York",
+        "theme": "light",
+        "style": "1",
+        "locale": "en",
+        "withdateranges": true,
+        "allow_symbol_change": true,
+        "calendar": false,
+        "studies": [
+            "STD;24h%Volume"
+        ],
+        "support_host": "https://www.tradingview.com"
+    }
+    </script>
+
+  <footer>
+    <div class="layer1">
+      <div class="one">
+        <h3>Useful links</h3>
+         <ul>
+          <a href="index.html"><li>HOME</li></a>
+          <a href="about.html"><li>About</li></a>
+         </ul>
+      </div>
+    
+      <div class="two">
+        <ul>
+          <a href="signup.html">Register</a>
+          <a href="terms.html">Rules</a>
+        </ul>
+      </div>
+    
+      <div class="three">
+        <ul>
+          <a href="faq.html"><li>FAQ</li></a>
+          <a href="support.html"><li>Support</li></a>
+        </ul>
+      </div>
+    
+      <div class="four">
+        <h3>My Account</h3>
+        <a href="signin.html"><li>Personal account</li></a>
+        <a href="signin.html"><li>Make a deposit</li></a>
+      </div>
+    
+      <div class="five">
+        <h3>CONATCT</h3>
+        <ul>
+          <li>AMINISTRATOR OFFICE</li>
+          <li>@biggyassets.dev.support</li>
+        </ul>
+      </div>
+    </div><br>
+    <hr style="border-color: rgb(151, 148, 193);">
+  
+    <div class="layer2">
+     
+      <div class="images">
+        <div class="images1">
+          <img src="https://zenchainfinance.com/images/pay1.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay7.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay10.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay4.png" alt="">
+        </div>
+        <div class="images1">
+          <img src="https://zenchainfinance.com/images/pay3.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay6.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay9.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay12.png" alt="">
+        </div>
+        <div class="images1">
+          <img src="https://zenchainfinance.com/images/pay2.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay5.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay8.png" alt="">
+          <img src="https://zenchainfinance.com/images/pay11.png" alt="">
+        </div>
+      </div>
+      <div class="footer-logo">
+        <div class="logo">
+  
+          <a href="index.html"><img src="" alt=""><img src="./images/biggy logo.png" alt=""></a>
+      </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const username = localStorage.getItem('username');
+
+        if (!username) {
+            document.getElementById('message').innerText = "No user logged in.";
+            return;
+        }
+
+        // Fetch current profile details
+        fetch(`/get-user-profile?username=${username}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('full_name').value = data.full_name;
+                    document.getElementById('bitcoin_address').value = data.bitcoin_address;
+                    document.getElementById('contact_info').value = data.email;
+                } else {
+                    document.getElementById('message').innerText = "Failed to load profile.";
+                }
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                document.getElementById('message').innerText = "Error loading profile.";
+            });
+
+        // Handle profile update form submission
+        document.getElementById('profile-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            formData.append('username', username);
+
+            fetch('/update-profile', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('message').innerText = data.message;
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                document.getElementById('message').innerText = "Error updating profile.";
+            });
+        });
+    });
+</script>
+</body>
+</html>
