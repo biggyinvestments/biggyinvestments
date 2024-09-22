@@ -817,72 +817,137 @@ app.post('/api/admin/add-penalty', async (req, res) => {
 
 
 
-// Function to add a bonus
-app.post('/api/admin/add-bonus', (req, res) => {
-  const { userId, bonusAmount, bonusType, reason, authPassword } = req.body;
+async function addBonus(userId, amount, description) {
+  return new Promise((resolve, reject) => {
+    // Fetch username based on userId
+    pool.query('SELECT username FROM users WHERE id = ?', [userId], (err, results) => {
+      if (err) return reject(err);
+      if (!results.length) return reject(new Error('User not found'));
 
-  // Validate the input
-  if (!userId || !bonusAmount || !bonusType || !reason || !authPassword) {
-      return res.status(400).json({ success: false, message: 'Missing required fields' });
-  }
+      const username = results[0].username;
 
-  // Convert bonusAmount to a number
-  const amount = parseFloat(bonusAmount);
-  if (isNaN(amount) || amount <= 0) {
-      return res.status(400).json({ success: false, message: 'Invalid bonus amount' });
-  }
-
-  // Check if the user exists
-  pool.query('SELECT * FROM users WHERE id = ?', [userId], (err, results) => {
-      if (err) {
-          console.error('Error fetching user details:', err);
-          return res.status(500).json({ success: false, message: 'Server error' });
-      }
-
-      if (results.length === 0) {
-          return res.status(404).json({ success: false, message: 'User not found' });
-      }
-
-      const user = results[0];
-      // Convert user's balance to a number
-      const currentBalance = parseFloat(user.balance);
-      if (isNaN(currentBalance)) {
-          return res.status(500).json({ success: false, message: 'Error with user balance' });
-      }
-
-      const newBalance = currentBalance + amount;
-
-      console.log(`User found: ${JSON.stringify(user)}`);
-      console.log(`Bonus Amount: ${amount}`);
-      console.log(`New balance to be updated: ${newBalance}`);
-
-      // Update user's balance
-      pool.query('UPDATE users SET balance = ? WHERE id = ?', [newBalance, userId], (err) => {
-          if (err) {
-              console.error('Error updating user balance:', err);
-              return res.status(500).json({ success: false, message: 'Server error' });
-          }
-
-          console.log(`User balance updated to: ${newBalance}`);
-
-          // Log the bonus in the bonuses table
-          pool.query('INSERT INTO bonuses (user_id, amount, type, reason) VALUES (?, ?, ?, ?)', [
-              userId,
-              amount,
-              bonusType,
-              reason
-          ], (err) => {
-              if (err) {
-                  console.error('Error inserting bonus:', err);
-                  return res.status(500).json({ success: false, message: 'Server error' });
-              }
-
-              // Send success response
-              res.json({ success: true });
-          });
-      });
+      // Update user balance
+      pool.query(
+        'UPDATE users SET balance = balance + ? WHERE id = ?',
+        [amount, userId],
+        (err, results) => {
+          if (err) return reject(err);
+          
+          // Insert into transactions table
+          pool.query(
+            `INSERT INTO transactions (username, plan_name, plan_credit_amount, deposit_method, transaction_date) 
+             VALUES (?, ?, ?, ?, ?)`,
+            [username, null, amount, 'Bonus', new Date()],
+            (err, result) => {
+              if (err) return reject(err);
+              resolve(result);
+            }
+          );
+        }
+      );
+    });
   });
+}
+
+
+
+async function logTransaction(username, planName, amount, description) {
+  const transactionDate = new Date();
+  await pool.promise().query(
+    `INSERT INTO transactions (username, plan_name, plan_credit_amount, deposit_method, transaction_date) 
+     VALUES (?, ?, ?, ?, ?)`,
+    [username, planName, amount, 'Bonus/Investment', transactionDate]
+  );
+}
+
+app.post('/api/admin/add-bonus-or-investment', async (req, res) => {
+  const { userId, amount, actionType, planId, description, authPassword } = req.body;
+
+  try {
+    // Authenticate admin's password before proceeding
+    const adminPassword = process.env.ADMIN_PASSWORD;
+    if (authPassword !== adminPassword) {
+      return res.status(401).json({ message: 'Invalid admin password' });
+    }
+
+    // Fetch username based on userId
+    const [user] = await pool.promise().query('SELECT username FROM users WHERE id = ?', [userId]);
+    if (!user.length) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const username = user[0].username;
+
+    if (actionType === 'bonus') {
+      // Handle the existing bonus logic
+      await addBonus(userId, amount, description);
+      await logTransaction(username, null, null, description); // Pass username
+      return res.json({ success: true, message: 'Bonus added successfully' });
+    }
+
+    if (actionType === 'investment') {
+      const [plan] = await pool.promise().query('SELECT * FROM plans WHERE id = ?', [planId]);
+      if (!plan.length) {
+        return res.status(404).json({ message: 'Plan not found' });
+      }
+
+      const { duration, profit } = plan[0];
+      const investmentStartDate = new Date();
+      const investmentEndDate = new Date(investmentStartDate.getTime() + duration * 60 * 60 * 1000);
+      const interest = amount * (profit / 100);
+
+      // Debugging: Log userId and other variables
+      console.log('Inserting investment with:', {
+        userId,
+        amount,
+        interest,
+        planName: plan[0].name,  // Fixed reference
+        profit,
+        investmentStartDate,
+        investmentEndDate,
+      });
+
+      // Insert the new investment into the active_deposits table
+      await pool.promise().query(
+        `INSERT INTO active_deposits (user_id, amount, interest, plan_name, profit, investment_start_date, investment_end_date) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [userId, amount, interest, plan[0].name, profit, investmentStartDate, investmentEndDate]
+      );
+
+      // Log the transaction in the transactions table
+      await logTransaction(username, plan[0].name, amount, description); // Use username
+
+      return res.json({ success: true, message: 'Investment added successfully' });
+    }
+
+    res.status(400).json({ message: 'Invalid action type' });
+  } catch (err) {
+    console.error('Error in add-bonus-or-investment:', err);
+    res.status(500).json({ message: 'Error in add-bonus-or-investment' });
+  }
 });
+
+
+
+
+
+
+
+app.get('/api/expiring-deposits', async (req, res) => {
+  try {
+      const [deposits] = await pool.promise().query(`
+          SELECT *, DATEDIFF(investment_end_date, NOW()) AS days_left
+          FROM active_deposits
+          WHERE investment_end_date > NOW()
+      `);
+      res.json(deposits);
+  } catch (err) {
+      console.error('Error fetching expiring deposits:', err);
+      res.status(500).json({ message: 'Error fetching expiring deposits' });
+  }
+});
+
+
 
 
 
@@ -1077,6 +1142,11 @@ app.get('/get-withdrawal-history', (req, res) => {
       });
   });
 });
+
+
+
+
+
 
 
 
