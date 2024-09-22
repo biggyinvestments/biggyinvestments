@@ -26,15 +26,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname));
 
-const transporter = nodemailer.createTransport({
-    host: 'smtp-mail.outlook.com',
-    port: 587,
-    secure: false, // use SSL
-    auth: {
-      user: 'memecointech@hotmail.com',
-      pass: 'Samuelfelicia@2002'
-    }
-});
 
 app.post('/api/auth/register', (req, res) => {
   const { full_name, email, username, password, referral_code } = req.body;
@@ -59,7 +50,7 @@ app.post('/api/auth/register', (req, res) => {
 
       // Insert user into database
       pool.query(
-        'INSERT INTO users (full_name, email, username, password, referral_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        'INSERT INTO users (full_name, email, username, password, referral_code) VALUES (?, ?, ?, ?, ?)',
         [full_name, email, username, password, referral_code],
         (error, results) => {
           if (error) {
@@ -75,7 +66,7 @@ app.post('/api/auth/register', (req, res) => {
   } else {
     // Insert user into database without referral
     pool.query(
-      'INSERT INTO users (full_name, email, username, password) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      'INSERT INTO users (full_name, email, username, password) VALUES (?, ?, ?, ?)',
       [full_name, email, username, password],
       (error, results) => {
         if (error) {
