@@ -9,6 +9,15 @@ require('dotenv').config();
 
 const app = express();
 
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER, // Your Gmail address
+    pass: process.env.GMAIL_PASS, // Your App Password
+  },
+});
+
+
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -27,11 +36,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
 
+// Function to send email
+const sendEmail = async (to, subject, htmlContent) => {
+  try {
+    await transporter.sendMail({
+      from: `"BIGGYASSETS" <${process.env.GMAIL_USER}>`,
+      to: to,
+      subject: subject,
+      html: htmlContent,
+    });
+    console.log('Email sent successfully');
+  } catch (error) {
+    console.error('Error sending email:', error);
+  }
+};
+
 app.post('/api/auth/register', (req, res) => {
   const { full_name, email, username, password, referral_code } = req.body;
 
   // Validate input
-  if (!full_name || !email || !username || !password ) {
+  if (!full_name || !email || !username || !password) {
     return res.status(400).json({ message: 'Please fill in all required fields.' });
   }
 
@@ -58,6 +82,23 @@ app.post('/api/auth/register', (req, res) => {
             return res.status(500).json({ message: 'Error registering user.' });
           }
 
+          // Send welcome email
+          sendEmail(
+            email,
+            'Welcome to ',
+            `
+              <h1>Hello ${username},</h1>
+              <p>Welcome to our investment platform! Your account has been successfully created.</p>
+              <p>We offer the following investment plans:</p>
+              <ul>
+                <li><a href="https://biggyinvestments.onrender.com/signin.html">Buy </a></li>
+                <li><a href="https://biggyinvestments.onrender.com/signin.html">Buy Plan 2</a></li>
+                <li><a href="https://biggyinvestments.onrender.com/signin.html">Buy Plan 3</a></li>
+              </ul>
+              <p>Click on any of the above plans to log in and start investing!</p>
+            `
+          );
+
           // Redirect to login page
           res.redirect('/signin.html');
         }
@@ -74,13 +115,58 @@ app.post('/api/auth/register', (req, res) => {
           return res.status(500).json({ message: 'Error registering user.' });
         }
 
+        // Send welcome email
+        sendEmail(
+          email,
+          'Welcome to Biggyassets',
+          `
+          <div style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;">
+      <table width="100%" style="max-width: 600px; margin: auto; border-collapse: collapse;">
+        <tr>
+          <td style="text-align: center; padding: 20px;">
+            <img src="https://github.com/biggyinvestments/biggyinvestments/blob/main/images/biggy%20logo.png?raw=true" alt="Company Logo" style="max-width: 100%; height: auto;"/>
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color: #740000; padding: 20px; text-align: center; color: white;">
+            <h1 style="margin: 0;">Welcome, ${username}!</h1>
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color: white; padding: 20px;">
+            <p style="font-size: 16px; line-height: 1.5;">Your account has been successfully created. We're excited to have you on board!</p>
+            <p style="font-size: 16px; line-height: 1.5;">We offer the following investment plans:</p>
+            <ul style="list-style-type: none; padding: 0;">
+              <li style="margin: 10px 0;">
+                <a href="https://biggyinvestments.onrender.com/signin.html" style="display: inline-block; background-color: #740000; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Buy Plan 1</a>
+              </li>
+              <li style="margin: 10px 0;">
+                <a href="https://biggyinvestments.onrender.com/signin.html" style="display: inline-block; background-color: #740000; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Buy Plan 2</a>
+              </li>
+              <li style="margin: 10px 0;">
+                <a href="https://biggyinvestments.onrender.com/signin.html" style="display: inline-block; background-color: #740000; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Buy Plan 3</a>
+              </li>
+            </ul>
+            <p style="font-size: 16px; line-height: 1.5;">Click on any of the above plans to log in and start investing!</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color: #f4f4f4; padding: 10px; text-align: center;">
+            <p style="font-size: 12px; color:#740000;">&copy; 2024 Biggyassets. All rights reserved.</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+          
+          `
+        );
+
         // Redirect to login page
         res.redirect('/signin.html');
       }
     );
   }
 });
-
 
 
 // Route for user login
@@ -220,8 +306,47 @@ app.post('/api/auth/login', (req, res) => {
          VALUES ((SELECT id FROM users WHERE username = ?), ?, NOW(), ?, ?, ?, ?, ?, ?, ?, ?, 'pending')`,
         [username, depositAmount, investmentStartDate, investmentEndDate, planName, planPrincipleReturn, planCreditAmount, planDepositFee, planDebitAmount, depositMethod]
       );
+
+
+
+
+       // Send confirmation email
+       const emailContent = `
+       <div style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;">
+         <table width="100%" style="max-width: 600px; margin: auto; border-collapse: collapse;">
+           <tr>
+             <td style="text-align: center; padding: 20px;">
+               <img src="https://github.com/biggyinvestments/biggyinvestments/blob/main/images/biggy%20logo.png?raw=true" alt="Company Logo" style="max-width: 100%; height: auto;" />
+             </td>
+           </tr>
+           <tr>
+             <td style="background-color: #740000; padding: 20px; text-align: center; color: white;">
+               <h1 style="margin: 0;">Deposit Successful!</h1>
+             </td>
+           </tr>
+           <tr>
+             <td style="background-color: white; padding: 20px;">
+               <p style="font-size: 16px; line-height: 1.5;">Dear ${username},</p>
+               <p style="font-size: 16px; line-height: 1.5;">Your deposit of $${depositAmount} has been successfully submitted. The deposit will be reflected in the "Active Deposits" tab once confirmed by the admin after blockchain verification.</p>
+               <p style="font-size: 16px; line-height: 1.5;">Thank you for investing with us!</p>
+               <a href="https://biggyinvestments.onrender.com/signin.html" style="display: inline-block; background-color: #740000; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Return to Dashboard</a>
+             </td>
+           </tr>
+           <tr>
+             <td style="background-color: #f4f4f4; padding: 10px; text-align: center;">
+               <p style="font-size: 12px; color: #740000;">&copy; 2024 Biggyassets. All rights reserved.</p>
+             </td>
+           </tr>
+         </table>
+       </div>
+     `;
+ 
+     // Call sendEmail to notify the user
+     sendEmail(user.email, 'Deposit Confirmation', emailContent);
+
+
   
-      res.json({ success: true, message: 'Deposit successful' });
+      res.json({ success: true, message: 'Deposit successful. Confirmation email sent.' });
     } catch (err) {
       console.error('Error processing deposit:', err); // Enhanced error logging
       res.status(500).json({ message: 'Error processing deposit' });
@@ -317,78 +442,125 @@ app.get('/api/admin/pending-deposits', (req, res) => {
   });
 });
 
-/// Approve a deposit
-app.post('/api/admin/approve-deposit', async (req, res) => {
+// Approve a deposit
+app.post('/api/admin/approve-deposit', (req, res) => {
   const { depositId } = req.body;
 
-  try {
-    // Get the deposit details including the plan name
-    const [deposit] = await pool.promise().query('SELECT * FROM deposits WHERE id = ?', [depositId]);
+  // Step 1: Get the deposit details including the plan name
+  pool.query('SELECT * FROM deposits WHERE id = ?', [depositId], (err, depositResult) => {
+    if (err) {
+      console.error('Error fetching deposit details:', err);
+      return res.status(500).json({ message: 'Error approving deposit' });
+    }
 
-    if (!deposit.length) {
+    if (!depositResult.length) {
       return res.status(404).json({ message: 'Deposit not found' });
     }
 
-    const { user_id, amount, plan_name, investment_start_date } = deposit[0];
+    const { user_id, amount, plan_name, investment_start_date } = depositResult[0];
 
-    // Get the corresponding plan details (duration and profit) from the plans table
-    const [plan] = await pool.promise().query('SELECT duration, profit FROM plans WHERE name = ?', [plan_name]);
+    // Step 2: Get the plan details (duration and profit)
+    pool.query('SELECT duration, profit FROM plans WHERE name = ?', [plan_name], (err, planResult) => {
+      if (err) {
+        console.error('Error fetching plan details:', err);
+        return res.status(500).json({ message: 'Error approving deposit' });
+      }
 
-    if (!plan.length) {
-      return res.status(404).json({ message: 'Plan not found' });
-    }
+      if (!planResult.length) {
+        return res.status(404).json({ message: 'Plan not found' });
+      }
 
-    const { duration, profit } = plan[0];
+      const { duration, profit } = planResult[0];
 
-    // Calculate the investment end date based on the plan's duration
-    const startDate = new Date(investment_start_date);
-    const endDate = new Date(startDate.getTime() + duration * 60 * 60 * 1000);
+      // Step 3: Calculate investment end date and interest
+      const startDate = new Date(investment_start_date);
+      const endDate = new Date(startDate.getTime() + duration * 60 * 60 * 1000);
+      const interest = amount * (profit / 100);
 
-    // Calculate the profit based on the interest percentage
-    const interest = amount * (profit / 100);
+      // Step 4: Approve deposit by updating the status
+      pool.query('UPDATE deposits SET status = ? WHERE id = ?', ['approved', depositId], (err) => {
+        if (err) {
+          console.error('Error updating deposit status:', err);
+          return res.status(500).json({ message: 'Error approving deposit' });
+        }
 
-    // Update the deposit status to "approved"
-    await pool.promise().query('UPDATE deposits SET status = ? WHERE id = ?', ['approved', depositId]);
+        // Step 5: Insert details into active_deposits table
+        pool.query(
+          `INSERT INTO active_deposits (user_id, amount, interest, plan_name, profit, investment_start_date, investment_end_date)
+           VALUES (?, ?, ?, ?, ?, ?, ?)`,
+          [user_id, amount, interest, plan_name, profit, startDate, endDate],
+          (err) => {
+            if (err) {
+              console.error('Error inserting into active_deposits:', err);
+              return res.status(500).json({ message: 'Error approving deposit' });
+            }
 
-    // Insert the details into the active_deposits table, including the calculated profit
-    await pool.promise().query(
-      `INSERT INTO active_deposits (user_id, amount, interest, plan_name, profit, investment_start_date, investment_end_date) 
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [user_id, amount, interest, plan_name, profit, startDate, endDate]
-    );
+            // Step 6: Fetch the user's email for notification
+            pool.query('SELECT email FROM users WHERE id = ?', [user_id], (err, userResult) => {
+              if (err || !userResult.length) {
+                console.error('Error fetching user email:', err);
+                return res.status(500).json({ message: 'Error notifying user' });
+              }
 
-    res.json({ message: 'Deposit approved and moved to active deposits successfully' });
-  } catch (err) {
-    console.error('Error approving deposit:', err);
-    res.status(500).json({ message: 'Error approving deposit' });
-  }
+              const userEmail = userResult[0].email;
+              const emailContent = `Your deposit of ${amount} has been approved under the ${plan_name} plan.`;
+
+              // Step 7: Send email notification
+              sendEmail(userEmail, 'Deposit Approved', emailContent, (err) => {
+                if (err) {
+                  console.error('Error sending approval email:', err);
+                }
+                res.json({ message: 'Deposit approved and moved to active deposits successfully' });
+              });
+            });
+          }
+        );
+      });
+    });
+  });
 });
-
-
-
 
 // Reject a deposit
 app.post('/api/admin/reject-deposit', (req, res) => {
   const { depositId } = req.body;
 
-  // Move deposit to rejected_deposits
+  // Step 1: Move deposit to rejected_deposits
   pool.query(
     'INSERT INTO rejected_deposits (id, user_id, amount, status, date) SELECT id, user_id, amount, status, date FROM deposits WHERE id = ?',
     [depositId],
-    (err) => {
+    (err, result) => {
       if (err) {
         console.error('Error moving deposit to rejected_deposits:', err);
-        return res.status(500).json({ message: 'Error moving deposit to rejected_deposits' });
+        return res.status(500).json({ message: 'Error rejecting deposit' });
       }
 
-      // Remove the deposit from the deposits table
+      const user_id = result.insertId;
+
+      // Step 2: Remove deposit from deposits table
       pool.query('DELETE FROM deposits WHERE id = ?', [depositId], (err) => {
         if (err) {
-          console.error('Error deleting deposit from deposits table:', err);
-          return res.status(500).json({ message: 'Error deleting deposit from deposits table' });
+          console.error('Error deleting deposit:', err);
+          return res.status(500).json({ message: 'Error rejecting deposit' });
         }
 
-        res.json({ message: 'Deposit rejected successfully' });
+        // Step 3: Fetch the user's email for notification
+        pool.query('SELECT email FROM users WHERE id = ?', [user_id], (err, userResult) => {
+          if (err || !userResult.length) {
+            console.error('Error fetching user email:', err);
+            return res.status(500).json({ message: 'Error notifying user' });
+          }
+
+          const userEmail = userResult[0].email;
+          const emailContent = `Your deposit has been rejected. Please contact support for more details.`;
+
+          // Step 4: Send email notification
+          sendEmail(userEmail, 'Deposit Rejected', emailContent, (err) => {
+            if (err) {
+              console.error('Error sending rejection email:', err);
+            }
+            res.json({ message: 'Deposit rejected successfully' });
+          });
+        });
       });
     }
   );

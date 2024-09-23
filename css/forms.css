@@ -352,7 +352,7 @@ body {
 
 .forgot-password a {
     text-decoration: none;
-    color: rgba(116, 0, 0, 1);
+    color: #740000;
     transition: color 0.3s;
 }
 
@@ -368,7 +368,7 @@ body {
 }
 
 .login-container .signup a {
-    color: rgba(116, 0, 0, 1);
+    color: #740000;
     text-decoration: none;
     font-weight: bold;
 }
