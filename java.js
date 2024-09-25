@@ -132,6 +132,30 @@ setInterval(fetchCryptoNews, 60000);
 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all links on the page
+    const links = document.querySelectorAll('a');
+  
+    // Add click event listener to all links
+    links.forEach(link => {
+      link.addEventListener('click', function(event) {
+        // Check if the link has an href attribute (some might not)
+        if (this.href && !this.href.includes('#')) { // Avoid loading for anchor links
+          // Show the loading spinner
+          document.getElementById('loading-spinner').style.display = 'flex';
+        }
+      });
+    });
+  
+    // Hide the spinner when the page is fully loaded
+    window.addEventListener('load', function() {
+      document.getElementById('loading-spinner').style.display = 'none';
+    });
+  });
+
+
+
+
 
 
 
@@ -195,7 +219,7 @@ document.querySelectorAll('.faq-question').forEach(item => {
                     element.classList.add('visible');
                 }
             });
-        }
+}
 
         window.addEventListener('scroll', handleScroll);
 
