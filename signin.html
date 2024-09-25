@@ -21,6 +21,9 @@
 </style>
 </head>
 <body>
+  <div id="loading-spinner" style="display: none;">
+    <div class="spinner"></div>
+  </div>
     <header class="navbar">
         <div class="container1">
             <div class="header-flex">
@@ -174,6 +177,7 @@
             </div>
         </div>
     </footer>
+    <script src="java.js"></script>
 
     <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
@@ -241,5 +245,33 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
   })
   .catch(error => console.error('Error:', error));
 });
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all links on the page
+    const links = document.querySelectorAll('a');
+  
+    // Add click event listener to all links
+    links.forEach(link => {
+      link.addEventListener('click', function(event) {
+        // Check if the link has an href attribute (some might not)
+        if (this.href && !this.href.includes('#')) { // Avoid loading for anchor links
+          // Show the loading spinner
+          document.getElementById('loading-spinner').style.display = 'flex';
+        }
+      });
+    });
+  
+    // Hide the spinner when the page is fully loaded
+    window.addEventListener('load', function() {
+      document.getElementById('loading-spinner').style.display = 'none';
+    });
+});
+
     </script>
 </body>

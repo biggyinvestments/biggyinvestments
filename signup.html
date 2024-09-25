@@ -21,6 +21,9 @@
 </style>
 </head>
 <body>
+    <div id="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+      </div>
     <header class="navbar">
         <div class="container1">
             <div class="header-flex">
@@ -200,6 +203,31 @@
     
 
     <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all links on the page
+    const links = document.querySelectorAll('a');
+  
+    // Add click event listener to all links
+    links.forEach(link => {
+      link.addEventListener('click', function(event) {
+        // Check if the link has an href attribute (some might not)
+        if (this.href && !this.href.includes('#')) { // Avoid loading for anchor links
+          // Show the loading spinner
+          document.getElementById('loading-spinner').style.display = 'flex';
+        }
+      });
+    });
+  
+    // Hide the spinner when the page is fully loaded
+    window.addEventListener('load', function() {
+      document.getElementById('loading-spinner').style.display = 'none';
+    });
+});
+
+
+
+
           // Adding animation on page load
         window.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.signup-container').classList.add('visible');
@@ -301,5 +329,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+
+
+
+
     </script>
 </body>

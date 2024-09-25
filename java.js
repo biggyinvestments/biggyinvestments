@@ -132,6 +132,63 @@ setInterval(fetchCryptoNews, 60000);
 
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    const tabs = document.querySelectorAll('.tab');
+    const testimonials = document.querySelectorAll('.testimonial');
+    let currentIndex = 0;
+    let autoSwipeInterval;
+
+    // Function to show the testimonial at the current index
+    function showTestimonial(index) {
+        // Remove 'active' class from all tabs
+        tabs.forEach(tab => tab.classList.remove('active'));
+        // Hide all testimonials
+        testimonials.forEach(testimonial => testimonial.style.display = 'none');
+        
+        // Add 'active' class to the selected tab
+        tabs[index].classList.add('active');
+        // Show the testimonial corresponding to the selected tab
+        testimonials[index].style.display = 'block';
+    }
+
+    // Function to start automatic swiping
+    function startAutoSwipe() {
+        autoSwipeInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % testimonials.length; // Loop back to the first if at the end
+            showTestimonial(currentIndex);
+        }, 5000); // Change every 5 seconds
+    }
+
+    // Function to stop automatic swiping
+    function stopAutoSwipe() {
+        clearInterval(autoSwipeInterval);
+    }
+
+    // Add click event listeners for manual tab switching
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', function() {
+            stopAutoSwipe(); // Stop auto-swiping if the user interacts
+            showTestimonial(index); // Show the clicked testimonial
+            currentIndex = index; // Update the current index
+            startAutoSwipe(); // Restart auto-swiping after user interaction
+        });
+    });
+
+    // Initialize by showing the first testimonial
+    showTestimonial(currentIndex);
+    // Start the auto-swiping
+    startAutoSwipe();
+});
+
+
+
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // Get all links on the page
     const links = document.querySelectorAll('a');
