@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIGGY</title>
+    <title>BIGGYassets</title>
     <meta name="theme-color" content="  #740000">
     <meta name="apple-mobile-web-app-status-bar-style" content="  #740000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,9 +14,76 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/mapillary-js@4.0.0/dist/mapillary.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/mapillary-js@4.0.0/dist/mapillary.min.css">
 
 <style>
+/* Sliding Menu */
+.top-menu {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.782);
+    padding-top: 60px;
+    transition: 0.3s;
+    z-index: 1000;
+    
+}
 
+.top-menu a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 15px;
+    color: rgba(116, 0, 0, 1);
+    display: block;
+    transition: 0.3s;
+    font-weight: bolder;
+    
+}
+
+.menu-btn{
+  position: absolute;
+  top: 1.6rem;
+  right: 25px;
+  font-weight: bolder;
+  font-family: "Protest Guerrilla", sans-serif;
+  font-size: 20px;
+}
+
+.top-menu a:hover {
+    background-color: #575757;
+}
+
+/* Overlay for background when menu is open */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 999;
+}
+
+/* Show menu and overlay */
+.top-menu.active {
+    top: 0;
+}
+
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#street-view {
+        height: 500px;
+        width: 100%;
+      }
 
 </style>
 </head>
@@ -31,13 +98,8 @@
                 </div>
                 <nav class="nav-menu">
                     <ul>
-                        
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#news">Crypto News</a></li>
-                        <li><a href="#partners">Partners</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <button class="signup-btn">Sign Up</button>
+                     
+                        <!-- <button class="signup-btn">Sign Up</button> -->
                     </ul>
                 </nav>
             </div>
@@ -51,20 +113,23 @@
            
         </div>
     </header>
-    
 
-    
 
-    <!-- <section id="home" class="hero-section">
-        <div class="hero-content container">
-        
-            <h1>Empowering Your Crypto Investments</h1>
-            <p>Join the next wave of crypto pioneers. Invest, grow, and diversify with confidence using our secure and cutting-edge platform. We're here to help you maximize your gains in the evolving crypto world.</p> <br><br>
-            <a href="signup.html" class="hero-btn">Start Investing</a><a href="login.html" class="hero-btn" style="margin-left: 5px; background-color: white; color: #f0bf56;">LOGIN</a><br><br>
-            <p style="color: #f0bf56; font-size: 9px;">To view our RIOs please get started and see full plan's list</p>
-        </div>
-        
-    </section> -->
+    <span class="menu-btn">&#9776; Menu</span>
+
+    <div class="top-menu" id="topMenu">
+       
+      <a href="signup.html">GET STARTED</a>
+                  <a href="signin.html">Sign in</a>
+                  <a href="about-us.html">Know Us more</a>
+      <a href="faq.html">FAQ</a>
+    
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+    
+    
     
     <div class="hero-section">
         <video autoplay muted loop playsinline poster="https://img.freepik.com/free-photo/3d-rendering-financial-neon-bull_23-2151691935.jpg?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid">
@@ -493,18 +558,27 @@ Whether you're looking to diversify your portfolio or just getting started with 
         <h2>Frequently Asked Questions</h2><br>
 
   <div class="faq-item">
+    <a href="faq.html">
       <div class="faq-question">What is the best way to invest in crypto?</div>
       <div class="faq-answer">The best way to invest in crypto is to research projects thoroughly, diversify your investments, and only invest what you can afford to lose.</div>
+    </a>
+    
   </div>
 
   <div class="faq-item">
+    <a href="faq.html">
       <div class="faq-question">How secure are online transactions?</div>
       <div class="faq-answer">Online transactions are secure when you use a reputable exchange, enable two-factor authentication, and store your funds in a cold wallet.</div>
+    </a>
+      
   </div>
 
   <div class="faq-item">
+    <a href="faq.html">
       <div class="faq-question">Can I lose my entire investment?</div>
       <div class="faq-answer">Yes, cryptocurrency investments are highly volatile and can result in losing your entire investment if the market crashes or the project fails.</div>
+    </a>
+
   </div>
     </div>
 </div>
@@ -531,8 +605,8 @@ Whether you're looking to diversify your portfolio or just getting started with 
 
 
 <div class="map" style="padding: 1.5rem;">
-    <h2>Find Our Head Office</h2>
-  <div id="map"></div>
+  <h2>Find Our Head Office</h2>
+<div id="map"></div>
 </div>
   
 
@@ -606,8 +680,10 @@ Whether you're looking to diversify your portfolio or just getting started with 
       </div>
     </div>
   </footer>
-        
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSDMAM9EDbNg9ns-u349sQ3eO5mWavXGM&callback=initMap" async defer></script>
+ 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSDMAM9EDbNg9ns-u349sQ3eO5mWavXGM&callback=initMap" async defer></script>
+
+
         <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
   var _smartsupp = _smartsupp || {};
@@ -620,73 +696,10 @@ Whether you're looking to diversify your portfolio or just getting started with 
   })(document);
   </script>
   <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+
+<script src="java.js"></script>
+
   <script>
-
-// Intersection Observer for Rectangle Animation
-document.addEventListener("DOMContentLoaded", () => {
-  const rectangle = document.querySelector(".rectangle");
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        rectangle.classList.add("slide-in");
-      }
-    });
-  });
-
-  observer.observe(rectangle);
-});
-
-// Helper function to check if the element is in the viewport
-function isInViewport(element) {
-  const rect = element.getBoundingClientRect();
-  return (
-    rect.top < window.innerHeight &&
-    rect.bottom > 0
-  );
-}
-
-// Function to add 'in-view' class to elements in the viewport
-function checkTabsInView() {
-  const tabs = document.querySelectorAll('.tab');
-  tabs.forEach(tab => {
-    if (isInViewport(tab)) {
-      tab.classList.add('in-view');
-    }
-  });
-}
-
-
-const counters = document.querySelectorAll('.count');
-counters.forEach(counter => {
-  const updateCount = () => {
-    const target = +counter.getAttribute('data-target');
-    const current = +counter.innerText;
-    const increment = target / 200; // Adjust this for speed
-
-    if (current < target) {
-      counter.innerText = Math.ceil(current + increment);
-      setTimeout(updateCount, 20);
-    } else {
-      counter.innerText = target;
-    }
-  };
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        updateCount();
-        observer.unobserve(counter);
-      }
-    });
-  });
-
-  observer.observe(counter);
-});
-
-
-
-
 
 const menuBtn = document.querySelector('.menu-btn');
         const topMenu = document.getElementById('topMenu');
@@ -702,64 +715,9 @@ const menuBtn = document.querySelector('.menu-btn');
         overlay.addEventListener('click', () => {
             topMenu.classList.remove('active');
             overlay.classList.remove('active');
-        });
-
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].style.backgroundColor = "";
-  }
-
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.style.backgroundColor = "#29a1f2"; // Change to your primary color
-}
-
-// Set default tab
-document.getElementById("innovation").style.display = "block";
-
-
-    const apiKey = '16a42969c1424ceb879197d2e62c760a'; // Replace with your NewsAPI key
-const url = `https://newsapi.org/v2/everything?q=crypto&apiKey=${apiKey}`;
-
-function fetchCryptoNews() {
-fetch(url)
-.then(response => response.json())
-.then(data => {
-const newsGrid = document.getElementById('newsGrid');
-newsGrid.innerHTML = ''; // Clear existing news
-
-// Limit to 6 news articles
-const articlesToDisplay = data.articles.slice(0, 5);
-
-articlesToDisplay.forEach(article => {
-    const newsItem = document.createElement('article');
-    newsItem.classList.add('news-item');
-
-    newsItem.innerHTML = `
-        <h3 style="font-size: 16px;">${article.title}</h3>
-        <p style="font-size: 14px; color="rgb(31, 61, 137)">${article.description || 'No description available.'}</p>
-        <a href="${article.url}" class="read-more" target="_blank">Read More</a>
-    `;
-
-    newsGrid.appendChild(newsItem);
 });
-})
-.catch(error => console.error('Error fetching news:', error));
-}
 
-// Fetch news on page load
-document.addEventListener('DOMContentLoaded', () => {
-fetchCryptoNews();
-// Fetch news every minute
-setInterval(fetchCryptoNews, 60000);
-});
+
 
 
 
@@ -785,72 +743,6 @@ const panorama = new google.maps.StreetViewPanorama(
 }
 map.setStreetView(panorama);
 
-
-
-
-const testimonials = document.querySelectorAll('.testimonial');
-const dots = document.querySelectorAll('.dot');
-
-let currentIndex = 0;
-
-// Function to show the testimonial at the current index
-function showTestimonial(index) {
-// Hide all testimonials
-testimonials.forEach(testimonial => {
-testimonial.style.display = 'none';
-});
-
-// Remove the active class from all dots
-dots.forEach(dot => {
-dot.classList.remove('active');
-});
-
-// Show the selected testimonial
-testimonials[index].style.display = 'block';
-
-// Set the active dot
-dots[index].classList.add('active');
-}
-
-// Add click event listeners to the dots
-dots.forEach((dot, index) => {
-dot.addEventListener('click', () => {
-currentIndex = index; // Update the current index
-showTestimonial(currentIndex); // Show the selected testimonial
-});
-});
-
-// Show the first testimonial by default
-showTestimonial(currentIndex);
-
-// FAQ toggle functionality
-document.querySelectorAll('.faq-question').forEach(item => {
-            item.addEventListener('click', function () {
-                const answer = this.nextElementSibling;
-
-                // Toggle visibility of answer
-                if (answer.style.display === "block") {
-                    answer.style.display = "none";
-                } else {
-                    answer.style.display = "block";
-                }
-            });
-        });
-
-        // Scroll-based animations
-        function handleScroll() {
-            const elements = document.querySelectorAll('.slide-in');
-            elements.forEach(element => {
-                const position = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-
-                if (position < screenPosition) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', handleScroll);
 
   </script>   
         

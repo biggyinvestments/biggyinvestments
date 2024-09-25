@@ -91,6 +91,16 @@ body {
     justify-content: space-between;
     height: 24px;
     width: 30px;
+    margin-right: 1rem;
+    margin-top: -0.2rem;
+}
+
+.hamburger a{
+    text-decoration: none;
+    color: #740000;
+    font-weight: bold;
+    font-family: "Protest Guerrilla", sans-serif;
+   font-size: 16px;
 }
 
 .hamburger span {
