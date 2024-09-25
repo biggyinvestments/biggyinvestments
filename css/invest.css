@@ -701,12 +701,12 @@ header{
 
   .bitcoinaddress h3{
     color: gold;
-    margin: 15px 0px;
+    margin: 8px 0px;
   }
 
   .bitcoinaddress p{
     font-size: 13px;
-    margin: 10px 0px;
+    margin: 5px 0px;
     color: white;
   }
 
