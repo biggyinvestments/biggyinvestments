@@ -70,8 +70,7 @@
   </div>
 </div>
 
-    
-</div>
+
 
   <div class="dashboard-container"> 
     <div class="body">    
@@ -351,30 +350,6 @@ fetch(`/users?username=${username}`, {
 .catch(error => console.error(error));
 
 
-
-
-    const ctx = document.getElementById('investmentChart').getContext('2d');
-const investmentChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-        datasets: [{
-            label: 'Investments',
-            data: [1000, 2000, 3000, 4000, 5000, 6000, 8000, 2000, 5000, 10000,6000, 7000],
-            backgroundColor: 'rgba(87, 2, 183, 0.4)',
-            borderColor: ' rgb(255, 196, 77)',
-            borderWidth: 2,
-            fill: true
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
 
 
 // Function to load user dashboard data

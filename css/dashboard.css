@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 .protest-guerrilla-regular {
@@ -86,8 +87,6 @@ body {
 }
 
 
-/* Mobile Menu */
-/* Style the menu container */
 .menu-container {
   position: relative;
   padding: 0rem 1rem;
@@ -167,12 +166,7 @@ body {
         display: none;
     }
 
-    .hamburger {
-        display: flex;
-        position: absolute;
-        top: 30px;
-        right: 30px;
-    }
+ 
 
     .signup-btn {
         display: none;

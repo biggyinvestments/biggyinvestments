@@ -495,24 +495,7 @@ app.post('/api/admin/approve-deposit', (req, res) => {
               return res.status(500).json({ message: 'Error approving deposit' });
             }
 
-            // Step 6: Fetch the user's email for notification
-            pool.query('SELECT email FROM users WHERE id = ?', [user_id], (err, userResult) => {
-              if (err || !userResult.length) {
-                console.error('Error fetching user email:', err);
-                return res.status(500).json({ message: 'Error notifying user' });
-              }
-
-              const userEmail = userResult[0].email;
-              const emailContent = `Your deposit of ${amount} has been approved under the ${plan_name} plan.`;
-
-              // Step 7: Send email notification
-              sendEmail(userEmail, 'Deposit Approved', emailContent, (err) => {
-                if (err) {
-                  console.error('Error sending approval email:', err);
-                }
-                res.json({ message: 'Deposit approved and moved to active deposits successfully' });
-              });
-            });
+            res.json({ message: 'Deposit approved and moved to active deposits successfully' });
           }
         );
       });
@@ -543,24 +526,7 @@ app.post('/api/admin/reject-deposit', (req, res) => {
           return res.status(500).json({ message: 'Error rejecting deposit' });
         }
 
-        // Step 3: Fetch the user's email for notification
-        pool.query('SELECT email FROM users WHERE id = ?', [user_id], (err, userResult) => {
-          if (err || !userResult.length) {
-            console.error('Error fetching user email:', err);
-            return res.status(500).json({ message: 'Error notifying user' });
-          }
-
-          const userEmail = userResult[0].email;
-          const emailContent = `Your deposit has been rejected. Please contact support for more details.`;
-
-          // Step 4: Send email notification
-          sendEmail(userEmail, 'Deposit Rejected', emailContent, (err) => {
-            if (err) {
-              console.error('Error sending rejection email:', err);
-            }
-            res.json({ message: 'Deposit rejected successfully' });
-          });
-        });
+        res.json({ message: 'Deposit rejected successfully' });
       });
     }
   );
@@ -869,11 +835,6 @@ app.get('/api/user-dashboard', async (req, res) => {
     );
     const totalWithdrawn = totalWithdrawnResult[0].totalWithdrawn || 0;
 
-    const [totalEarnedResult] = await pool.promise().query(
-      'SELECT SUM(amount) AS totalEarned FROM earnings WHERE user_id = (SELECT id FROM users WHERE username = ?)',
-      [username]
-    );
-    const totalEarned = totalEarnedResult[0].totalEarned || 0;
 
     const [lastDepositResult] = await pool.promise().query(
       'SELECT amount FROM deposits WHERE user_id = (SELECT id FROM users WHERE username = ?) ORDER BY date DESC LIMIT 1',
@@ -898,7 +859,6 @@ app.get('/api/user-dashboard', async (req, res) => {
       mostRecentActiveDeposit,
       totalPendingWithdrawals,
       totalWithdrawn,
-      totalEarned,
       lastDeposit,
       totalDeposits,
       lastWithdrawal
@@ -1011,6 +971,7 @@ async function addBonus(userId, amount, description) {
     });
   });
 }
+
 
 
 

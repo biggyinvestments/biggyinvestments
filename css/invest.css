@@ -19,6 +19,7 @@ body {
     color: #740000;
     background-color: #ffffff; /* Dark background for maturity */
     width: 100%;
+    
 }
 
 
@@ -149,14 +150,6 @@ header{
     .nav-menu {
         display: none;
     }
-
-    .hamburger {
-        display: flex;
-        position: absolute;
-        top: 30px;
-        right: 30px;
-    }
-
     .signup-btn {
         display: none;
     }
