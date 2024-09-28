@@ -17,7 +17,66 @@
 
 <style>
 
+.top-menu {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100vw;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.782);
+    padding-top: 60px;
+    transition: 0.3s;
+    z-index: 1000;
+    
+}
 
+.top-menu a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 15px;
+    color: rgba(116, 0, 0, 1);
+    display: block;
+    transition: 0.3s;
+    font-weight: bolder;
+    
+}
+
+.menu-btn{
+  position: absolute;
+  top: rem;
+  right: 25px;
+  font-weight: bolder;
+  font-family: "Protest Guerrilla", sans-serif;
+  font-size: 20px;
+}
+
+.top-menu a:hover {
+    background-color: #575757;
+}
+
+/* Overlay for background when menu is open */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 999;
+}
+
+/* Show menu and overlay */
+.top-menu.active {
+    top: 0;
+}
+
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
 </style>
 </head>
 <body>
@@ -46,26 +105,29 @@
 <!-- The menu button -->
 <div class="menu-container">
   <div class="flexer">
-    <button class="menu-button">Menu</button>
+    <span class="menu-btn">&#9776; Menu</span>
     <a href="invest.html"><button>Invest Now</button></a>
   </div>
-  <!-- The menu items container -->
+  <div class="overlay" id="overlay"></div> 
+
+  <div class="top-menu" id="topMenu">
+    <a href="dashboard.html">Back to Dashboard << </a></li><hr style="">
+
+    <a href="invest.html">Make Deposit</a></li><hr>
+
+    <a href="earning-history.html">Earning History</a></li><hr>
+
+    <a href="user-withdrawal.html">Withdraw</a></li><hr>
+
+    <a href="withdrawal-history.html">Withdrawal History</a></li><hr>
+
+    <a href="profile.html">Edit Profile</a></li><hr>
+  <a href="signin.html">Logout</a></li>
+  </div>
   <div class="menu-items">
     <!-- Menu items -->
     <ul>
-      <li><a href="dashboard.html">Back to Dashboard << </a></li><hr style="">
-
-      <li><a href="invest.html">Make Deposit</a></li><hr>
-
-      <li><a href="earning-history.html">Earning History</a></li><hr>
-
-      <li><a href="user-withdrawal.html">Withdraw</a></li><hr>
-
-      <li><a href="withdrawal-history.html">Withdrawal History</a></li><hr>
-
-      <li><a href="profile.html">Edit Profile</a></li><hr>
-
-      <li><a href="signin.html">Logout</a></li>
+     
     </ul>
   </div>
 </div>  
@@ -226,7 +288,24 @@
                 console.error('Error:', err);
                 document.getElementById('account-details').innerHTML = "Error fetching account details.";
             });
+});
+
+
+const menuBtn = document.querySelector('.menu-btn');
+    const topMenu = document.getElementById('topMenu');
+    const overlay = document.getElementById('overlay');
+
+    // Toggle Menu and Overlay
+    menuBtn.addEventListener('click', () => {
+        topMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
     });
+
+    // Close Menu when clicking outside
+    overlay.addEventListener('click', () => {
+        topMenu.classList.remove('active');
+        overlay.classList.remove('active');
+});
 </script>
 
 </body>

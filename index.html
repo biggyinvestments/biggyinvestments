@@ -80,10 +80,10 @@
     opacity: 1;
 }
 
-#street-view {
-        height: 500px;
-        width: 100%;
-      }
+#map {
+            height: 400px;
+            width: 100%;
+        }
 
 </style>
 </head>
@@ -636,7 +636,7 @@ Whether you're looking to diversify your portfolio or just getting started with 
 
 <div class="map" style="padding: 1.5rem;">
   <h2>Find Our Head Office</h2>
-<div id="map"></div>
+  <div id="map"></div>
 </div>
   
 
@@ -712,7 +712,9 @@ Whether you're looking to diversify your portfolio or just getting started with 
   </footer>
   
  
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSDMAM9EDbNg9ns-u349sQ3eO5mWavXGM&callback=initMap" async defer></script>
+  <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnoDqyCr_TbP&callback=initMap"
+        async defer></script>
 
 
         <!-- Smartsupp Live Chat script -->
@@ -731,6 +733,34 @@ Whether you're looking to diversify your portfolio or just getting started with 
 <script src="java.js"></script>
 
   <script>
+
+    // Define initMap globally
+    function initMap() {
+            // Coordinates for the location (change to your desired location)
+            var location = { lat: 40.748817, lng: -73.985428 }; // Example: New York
+
+            // Create the map centered on the location
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 14,
+            });
+
+            // Create the Street View panorama
+            var panorama = new google.maps.StreetViewPanorama(
+                document.getElementById('map'), {
+                    position: location,
+                    pov: {
+                        heading: 34,
+                        pitch: 10,
+                    },
+                    zoom: 1,
+                });
+
+            // Link the map and panorama so they move together
+            map.setStreetView(panorama);
+}
+
+
 
 const menuBtn = document.querySelector('.menu-btn');
         const topMenu = document.getElementById('topMenu');
@@ -752,27 +782,31 @@ const menuBtn = document.querySelector('.menu-btn');
 
 
 
-function initMap() {
-const officeLocation = { lat: 37.7749, lng: -122.4194 }; // Replace with your location
+ // Define the initMap function
+ function initMap() {
+            // Coordinates for the location (you can change this to your desired location)
+            var location = { lat: 40.748817, lng: -73.985428 }; // Example: New York
 
-// Initialize the map
-const map = new google.maps.Map(document.getElementById('map'), {
-    center: officeLocation,
-    zoom: 14,
-});
+            // Create a new map centered on the location
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: location,
+                zoom: 14,
+            });
 
-// Initialize Street View
-const panorama = new google.maps.StreetViewPanorama(
-    document.getElementById('map'),
-    {
-        position: officeLocation,
-        pov: { heading: 34, pitch: 10 },
-        zoomControl: true,
-        addressControl: false,
-    }
-);
+            // Create a Street View panorama
+            var panorama = new google.maps.StreetViewPanorama(
+                document.getElementById('map'), {
+                    position: location,
+                    pov: {
+                        heading: 34,
+                        pitch: 10,
+                    },
+                    zoom: 1,
+                });
+
+            // Link the map and panorama so they move together
+            map.setStreetView(panorama);
 }
-map.setStreetView(panorama);
 
 
   </script>   

@@ -601,36 +601,53 @@ app.get('/api/user-info', (req, res) => {
       }
   );
 });
-
 // Route to handle withdrawal requests
 app.post('/api/withdraw', (req, res) => {
   const { username, amount } = req.body;
 
-  // Step 1: Insert withdrawal request into pending_withdrawals table
-  pool.query(
+  // Step 1: Query the user's balance from the database
+  pool.query('SELECT balance FROM users WHERE username = ?', [username], (error, results) => {
+    if (error) {
+      console.error('Error fetching user balance:', error);
+      return res.status(500).json({ message: 'Error checking balance.' });
+    }
+
+    const userBalance = results[0]?.balance;
+
+    // Step 2: Check if the withdrawal amount is greater than the user's balance
+    if (userBalance < amount) {
+      return res.status(400).json({ message: 'Insufficient balance for this withdrawal.' });
+    }
+
+    // Step 3: Insert withdrawal request into pending_withdrawals table
+    pool.query(
       'INSERT INTO pending_withdrawals (username, amount) VALUES (?, ?)',
       [username, amount],
       (error, results) => {
-          if (error) {
-              console.error('Error inserting withdrawal request:', error);
-              return res.status(500).json({ message: 'Error processing withdrawal.' });
-          }
+        if (error) {
+          console.error('Error inserting withdrawal request:', error);
+          return res.status(500).json({ message: 'Error processing withdrawal.' });
+        }
 
-          // Step 2: Subtract the withdrawn amount from the user's balance
-          pool.query(
-              'UPDATE users SET balance = balance - ? WHERE username = ?',
-              [amount, username],
-              (error, results) => {
-                  if (error) {
-                      console.error('Error updating balance:', error);
-                      return res.status(500).json({ message: 'Error updating balance.' });
-                  }
-                  res.json({ message: 'Withdrawal request submitted successfully. Your withdrawal is still pending until Admin confirms statistics' });
-              }
-          );
+        // Step 4: Deduct the withdrawal amount from the user's balance
+        pool.query(
+          'UPDATE users SET balance = balance - ? WHERE username = ?',
+          [amount, username],
+          (error) => {
+            if (error) {
+              console.error('Error deducting balance:', error);
+              return res.status(500).json({ message: 'Error processing withdrawal.' });
+            }
+
+            // Success response
+            res.json({ message: 'Withdrawal request submitted successfully. Your withdrawal is still pending until Admin confirms.' });
+          }
+        );
       }
-  );
+    );
+  });
 });
+
 
 
 // Route to get the count of pending deposits
@@ -712,9 +729,8 @@ app.get('/api/admin/users', (req, res) => {
 });
 
 
-// Route to approve a pending withdrawal
 app.post('/api/admin/approve-withdrawal', (req, res) => {
-  const { id, username, amount } = req.body;
+  const { id } = req.body; // Only id is needed for approval
 
   // Update status to 'approved' in the pending_withdrawals table
   pool.query('UPDATE pending_withdrawals SET status = ? WHERE id = ?', ['approved', id], (error, result) => {
@@ -723,14 +739,8 @@ app.post('/api/admin/approve-withdrawal', (req, res) => {
           return res.status(500).json({ message: 'Error approving withdrawal' });
       }
 
-      // Subtract amount from user's balance
-      pool.query('UPDATE users SET balance = balance - ? WHERE username = ?', [amount, username], (err, updateResult) => {
-          if (err) {
-              console.error('Error updating user balance:', err);
-              return res.status(500).json({ message: 'Error updating user balance' });
-          }
-          res.json({ message: 'Withdrawal approved successfully!' });
-      });
+      // Success response without modifying the user's balance
+      res.json({ message: 'Withdrawal approved successfully!' });
   });
 });
 
@@ -1269,6 +1279,21 @@ app.get('/get-withdrawal-history', (req, res) => {
 
 
 
+// Route to get earnings history
+app.get('/api/earnings-history', (req, res) => {
+  const username = req.body.username; // Assuming you get the username from the request body or session
+
+  // Query the earnings table for the user's earnings
+  pool.query('SELECT * FROM earnings WHERE user_id = ?', [username], (error, results) => {
+      if (error) {
+          console.error('Error fetching earnings history:', error);
+          return res.status(500).json({ message: 'Error fetching earnings history.' });
+      }
+
+      // Send the results back to the frontend
+      res.json(results);
+  });
+});
 
 
 
