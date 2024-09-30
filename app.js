@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const mysql = require('mysql2'); 
 const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
 const cron = require('node-cron');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -31,6 +32,7 @@ const pool = mysql.createPool({
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname));
@@ -647,6 +649,29 @@ app.post('/api/withdraw', (req, res) => {
     );
   });
 });
+
+
+// Route to get user balance
+app.get('/api/user-balance', (req, res) => {
+  const username = req.query.username;
+
+  const query = 'SELECT balance FROM users WHERE username = ?';
+  
+  pool.query(query, [username], (err, results) => {
+      if (err) {
+          console.error('Database error:', err);
+          return res.status(500).json({ error: 'Database error' });
+      }
+      if (results.length === 0) {
+          return res.status(404).json({ error: 'User not found' });
+      }
+
+      // Convert balance to number
+      const balance = Number(results[0].balance);
+      res.json({ balance });
+  });
+});
+
 
 
 

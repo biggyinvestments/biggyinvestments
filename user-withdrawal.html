@@ -121,7 +121,8 @@
     <div class="body">
       <header class="dashboard-header">
         <div class="user-info">
-         
+          <h3>Your Balance:</h3>
+          <span id="balance">Loading...</span>
         </div>
        
         <div class="profile-settings">
@@ -266,7 +267,7 @@
   <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
     
     <script>
- document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const username = localStorage.getItem('username'); // Get the username from local storage
 
     // Fetch balance from the backend
@@ -274,12 +275,16 @@
         .then(response => response.json())
         .then(data => {
             if (data.balance !== undefined) {
-                document.getElementById('balance').textContent = data.balance;
+                document.getElementById('balance').textContent = `$${data.balance.toFixed(2)}`; // Display balance
             } else {
+                document.getElementById('balance').textContent = 'Balance not found';
                 console.error('Balance not found');
             }
         })
-        .catch(error => console.error('Error fetching balance:', error));
+        .catch(error => {
+            document.getElementById('balance').textContent = 'Error loading balance';
+            console.error('Error fetching balance:', error);
+        });
 
     // Handle withdrawal form submission
     const withdrawForm = document.getElementById('withdraw-form');
@@ -302,7 +307,7 @@
             }
         })
         .catch(error => console.error('Error processing withdrawal:', error));
-});
+    });
 
     const menuBtn = document.querySelector('.menu-btn');
     const topMenu = document.getElementById('topMenu');
