@@ -474,7 +474,7 @@ body {
 /* Media Queries for responsiveness */
 @media screen and (max-width: 768px) {
     .about-us {
-        background: url('https://img.freepik.com/free-photo/gray-futuristic-wireframe-abstract-background_53876-104038.jpg?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid') no-repeat center center/cover;
+        background: url('/images/gray-futuristic-wireframe-abstract-background_53876-104038.avif') no-repeat center center/cover;
     }
 
     .about-us .container {
@@ -997,7 +997,7 @@ button:hover {
 
 
 .faq{
-    background: url('https://img.freepik.com/premium-photo/man-suit-question-mark-is-front-him_1115474-135069.jpg?uid=R55814283&ga=GA1.2.1328920485.1725346503&semt=ais_hybrid') no-repeat center center/cover;
+    background: url('/images/man-suit-question-mark-is-front-him_1115474-135069.avif') no-repeat center center/cover;
     height: 60vh;
     margin-bottom: 1rem;
 }
@@ -1294,7 +1294,7 @@ button:hover {
   
   .referral-section {
     padding: 2rem 0rem;
-    background: url('https://img.freepik.com/premium-photo/futuristic-black-robots-black-backgroundxaxa_1417-21477.jpg?uid=R55814283&ga=GA1.1.1328920485.1725346503&semt=ais_hybrid') no-repeat center center fixed;
+    background: url('/images/futuristic-black-robots.avif') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -1556,3 +1556,23 @@ button:hover {
     100% { transform: rotate(360deg); }
   }
   
+
+
+  .video-container{
+    text-align: center;
+    z-index: -1;
+    filter: blur(1px);
+    margin-bottom: -12rem;
+    background-color: white;
+  }
+
+  .above-video{
+    font-family: "Protest Guerrilla", sans-serif;
+    margin-bottom: 10rem;
+    position: absolute;
+    padding: 0rem 2rem;
+  }
+
+footer{
+    margin-top: 12rem;
+}
