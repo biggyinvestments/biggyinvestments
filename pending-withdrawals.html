@@ -16,14 +16,6 @@
     </div>
     <h2>Pending Withdrawals</h2>
     <table id="withdrawals-list">
-        <!-- <thead>
-            <tr>
-                <td>Username</td>
-                <td>Amount</td>
-                <td>Requested At</td>
-                <td>Actions</td>
-            </tr>
-        </thead> -->
         <tbody style="padding: 10px; font-weight: bold;">
             <!-- Pending withdrawals will be inserted here -->
         </tbody>
@@ -66,24 +58,29 @@ fetch('/api/admin/pending-deposits/count')
     });
 
 
-// Fetch pending withdrawals
-fetch('/api/admin/pending-withdrawals')
-    .then(response => response.json())
-    .then(data => {
-        const withdrawalsContainer = document.getElementById('withdrawals-list');
-        data.forEach(withdrawal => {
-            const withdrawalItem = document.createElement('div');
-            withdrawalItem.innerHTML = `
-            <thead style="padding: 10px;">
-                <p style="padding: 10px; font-weight: bold;">Username: ${withdrawal.username}</p>
-                <p style="padding: 10px; font-weight: bold;">Amount: ${withdrawal.amount}</p>
-                <button style="padding: 10px; font-weight: bold; background-color: green; color: white; border-style: none;" onclick="approveWithdrawal(${withdrawal.id}, '${withdrawal.username}', ${withdrawal.amount})">Approve</button>
-                <button style="padding: 10px; font-weight: bold; background-color: red; color: white; border-style: none;" onclick="rejectWithdrawal(${withdrawal.id}, '${withdrawal.username}', ${withdrawal.amount})">Reject</button> <br><br> <hr> <br>
-            `;
-            withdrawalsContainer.appendChild(withdrawalItem);
-        });
-    });
-
+ // Fetch pending withdrawals
+ fetch('/api/admin/pending-withdrawals')
+        .then(response => response.json())
+        .then(data => {
+            const withdrawalsContainer = document.getElementById('withdrawals-list');
+            data.forEach(withdrawal => {
+                const withdrawalItem = document.createElement('div');
+                withdrawalItem.innerHTML = `
+                    <thead style="padding: 10px;">
+                        <p style="padding: 10px; font-weight: bold;">Username: ${withdrawal.username}</p>
+                        <p style="padding: 10px; font-weight: bold;">Amount: $${withdrawal.amount}</p>
+                        <p style="padding: 10px; font-weight: bold;">Wallet Address: ${withdrawal.wallet_address}</p> <!-- Display wallet address -->
+                        <button style="padding: 10px; font-weight: bold; background-color: green; color: white; border-style: none;" onclick="approveWithdrawal(${withdrawal.id}, '${withdrawal.username}', ${withdrawal.amount})">Approve</button>
+                        <button style="padding: 10px; font-weight: bold; background-color: red; color: white; border-style: none;" onclick="rejectWithdrawal(${withdrawal.id}, '${withdrawal.username}', ${withdrawal.amount})">Reject</button> 
+                        <br><br> 
+                        <hr> 
+                        <br>
+                    `;
+                withdrawalsContainer.appendChild(withdrawalItem);
+            });
+        })
+        .catch(error => console.error('Error fetching pending withdrawals:', error));
+        
 // Approve withdrawal
 function approveWithdrawal(id, username, amount) {
     fetch('/api/admin/approve-withdrawal', {

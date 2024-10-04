@@ -603,28 +603,45 @@ app.get('/api/user-info', (req, res) => {
       }
   );
 });
+
+
 // Route to handle withdrawal requests
 app.post('/api/withdraw', (req, res) => {
-  const { username, amount } = req.body;
+  const { username, amount, walletAddress } = req.body;
+
+  console.log("Withdrawal request received for user:", username);
+  console.log("Amount:", amount);
+  console.log("Wallet Address:", walletAddress); // Log wallet address for debugging
 
   // Step 1: Query the user's balance from the database
-  pool.query('SELECT balance FROM users WHERE username = ?', [username], (error, results) => {
+  pool.query('SELECT balance, email FROM users WHERE username = ?', [username], (error, results) => {
     if (error) {
       console.error('Error fetching user balance:', error);
       return res.status(500).json({ message: 'Error checking balance.' });
     }
 
-    const userBalance = results[0]?.balance;
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    const userBalance = parseFloat(results[0].balance); // Parse balance as a float
+    const withdrawalAmount = parseFloat(amount); // Parse withdrawal amount as a float
+    const userEmail = results[0].email;
+
+    // Debugging logs for balance and amount
+    console.log("User's current balance:", userBalance);
+    console.log("Withdrawal amount:", withdrawalAmount);
 
     // Step 2: Check if the withdrawal amount is greater than the user's balance
-    if (userBalance < amount) {
+    if (userBalance < withdrawalAmount) {
+      console.log("Insufficient balance! User balance:", userBalance, "Requested amount:", withdrawalAmount);
       return res.status(400).json({ message: 'Insufficient balance for this withdrawal.' });
     }
 
-    // Step 3: Insert withdrawal request into pending_withdrawals table
+    // Step 3: Insert withdrawal request into pending_withdrawals table with wallet address
     pool.query(
-      'INSERT INTO pending_withdrawals (username, amount) VALUES (?, ?)',
-      [username, amount],
+      'INSERT INTO pending_withdrawals (username, amount, wallet_address) VALUES (?, ?, ?)',
+      [username, withdrawalAmount, walletAddress],
       (error, results) => {
         if (error) {
           console.error('Error inserting withdrawal request:', error);
@@ -634,12 +651,47 @@ app.post('/api/withdraw', (req, res) => {
         // Step 4: Deduct the withdrawal amount from the user's balance
         pool.query(
           'UPDATE users SET balance = balance - ? WHERE username = ?',
-          [amount, username],
+          [withdrawalAmount, username],
           (error) => {
             if (error) {
               console.error('Error deducting balance:', error);
               return res.status(500).json({ message: 'Error processing withdrawal.' });
             }
+
+            // Step 5: Send withdrawal confirmation email
+            const emailContent = `
+              <div style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;">
+                <table width="100%" style="max-width: 600px; margin: auto; border-collapse: collapse;">
+                  <tr>
+                    <td style="text-align: center; padding: 20px;">
+                    <img src="https://github.com/biggyinvestments/biggyinvestments/blob/main/images/biggy%20logo.png?raw=true" alt="Company Logo" style="max-width: 100%; height: auto;" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="background-color:  #740000; padding: 20px; text-align: center; color: white;">
+                      <h1 style="margin: 0;">Withdrawal Request Submitted</h1>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="background-color: white; padding: 20px;">
+                      <p style="font-size: 16px; line-height: 1.5;">Dear ${username},</p>
+                      <p style="font-size: 16px; line-height: 1.5;">We have received your withdrawal request of $${withdrawalAmount}.</p>
+                      <p style="font-size: 16px; line-height: 1.5;">Your request is currently pending and will be processed once approved by the admin after the necessary blockchain verification.</p>
+                      <p style="font-size: 16px; line-height: 1.5;">Wallet Address: ${walletAddress}</p>
+                      <p style="font-size: 16px; line-height: 1.5;">Thank you for using our platform!</p>
+                      <a href="" style="display: inline-block; background-color:  #740000; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Return to Dashboard</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="background-color: #f4f4f4; padding: 10px; text-align: center;">
+                      <p style="font-size: 12px; color: #3e059b;">&copy; 2024 Memecointech. All rights reserved.</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            `;
+
+            sendEmail(userEmail, 'Withdrawal Request Submitted', emailContent);
 
             // Success response
             res.json({ message: 'Withdrawal request submitted successfully. Your withdrawal is still pending until Admin confirms.' });
@@ -649,6 +701,7 @@ app.post('/api/withdraw', (req, res) => {
     );
   });
 });
+
 
 
 // Route to get user balance
@@ -705,15 +758,17 @@ app.get('/api/pending-withdrawals-count', (req, res) => {
 
 // Route to get all pending withdrawals for admin
 app.get('/api/admin/pending-withdrawals', (req, res) => {
-  const query = 'SELECT * FROM pending_withdrawals WHERE status = ?';
+  // Ensure the query selects wallet_address as well
+  const query = 'SELECT id, username, amount, wallet_address, status FROM pending_withdrawals WHERE status = ?';
   pool.query(query, ['pending'], (error, results) => {
-      if (error) {
-          console.error('Error fetching pending withdrawals:', error);
-          return res.status(500).json({ message: 'Error fetching pending withdrawals' });
-      }
-      res.json(results);
+    if (error) {
+      console.error('Error fetching pending withdrawals:', error);
+      return res.status(500).json({ message: 'Error fetching pending withdrawals' });
+    }
+    res.json(results);
   });
 });
+
 
 
 app.get('/api/pending-withdrawals', (req, res) => {
