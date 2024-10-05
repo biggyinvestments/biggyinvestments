@@ -777,8 +777,12 @@ app.get('/api/admin/pending-deposits/count', (req, res) => {
 
 // Route to get all pending withdrawals for admin
 app.get('/api/admin/pending-withdrawals', (req, res) => {
-  // Ensure the query selects wallet_address as well
-  const query = 'SELECT id, username, amount, wallet_address, status FROM pending_withdrawals WHERE status = ?';
+  // Fetch wallet and bank details along with other necessary fields
+  const query = `
+    SELECT id, username, amount, method, wallet_address, bank_name, account_name, account_number, status 
+    FROM pending_withdrawals 
+    WHERE status = ?`;
+  
   pool.query(query, ['pending'], (error, results) => {
     if (error) {
       console.error('Error fetching pending withdrawals:', error);
@@ -787,6 +791,20 @@ app.get('/api/admin/pending-withdrawals', (req, res) => {
     res.json(results);
   });
 });
+
+
+// // Route to get all pending withdrawals for admin
+// app.get('/api/admin/pending-withdrawals', (req, res) => {
+//   // Ensure the query selects wallet_address as well
+//   const query = 'SELECT id, username, amount, wallet_address, status FROM pending_withdrawals WHERE status = ?';
+//   pool.query(query, ['pending'], (error, results) => {
+//     if (error) {
+//       console.error('Error fetching pending withdrawals:', error);
+//       return res.status(500).json({ message: 'Error fetching pending withdrawals' });
+//     }
+//     res.json(results);
+//   });
+// });
 
 
 
