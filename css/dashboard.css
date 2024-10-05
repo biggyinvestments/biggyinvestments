@@ -585,7 +585,7 @@ input:hover{
 
 .form-flex{
   display: flex;
-  justify-content: center;
+  justify-content: left;
   width: 100%;
   background-color: rgb(255, 255, 255);
   margin-bottom: 10px;
