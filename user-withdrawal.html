@@ -131,19 +131,44 @@
       </header><br><br>
   
                   <div class="itemsa">
-                    <form id="withdraw-form" >
+                    <<form id="withdraw-form">
                       <div class="form-flex">
                         <label for="withdraw-amount">Withdrawal Amount</label>
-                      <input type="number" id="withdraw-amount" name="withdraw-amount" placeholder="0.00" required>
+                        <input type="number" id="withdraw-amount" name="withdraw-amount" placeholder="0.00" required>
                       </div><br>
+                    
+                      <!-- Withdrawal method selection -->
                       <div class="form-flex">
-                        <label for="wallet-address">Wallet Address</label>
-                        <input type="text" id="wallet-address" name="wallet-address" placeholder="Enter your wallet address / currency" required>
-                      </div>
-                      <br>
+                        <label for="withdraw-method">Withdrawal method:</label>
+                        <select id="withdraw-method" name="withdraw-method" required style="border-style: solid;
+                        border-width: 1px;
+                        border-color:  rgba(116, 0, 0, 1); color: rgba(116, 0, 0, 1); font-weight: bold;">
+                          <option value="">Select method</option>
+                          <option value="bank">Bank Account</option>
+                          <option value="wallet">Crypto Wallet</option>
+                        </select>
+                      </div><br>
+                    
+                      <!-- Bank account inputs (hidden by default) -->
+                      <div id="bank-details" class="form-flex" style="display:none;">
                       
+                        <input type="text" id="bank-name" name="bank-name" placeholder="Enter bank name">
+                        
+                        
+                        <input type="text" id="account-name" name="account-name" placeholder="Enter account name">
+                    
+                        
+                        <input type="text" id="account-number" name="account-number" placeholder="Enter account number">
+                      </div><br>
+                    
+                      <!-- Wallet address input (hidden by default) -->
+                      <div id="wallet-address-div" class="form-flex" style="display:none;">
+                        <label for="wallet-address">Wallet Address</label>
+                        <input type="text" id="wallet-address" name="wallet-address" placeholder="Enter wallet address & currency">
+                      </div><br>
+                    
                       <button type="submit">Submit Withdrawal</button>
-                  </form>
+                    </form>
                   
                       <p id="message"></p>
                   </div>
@@ -271,66 +296,106 @@
   </script>
   <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
     
-    <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const username = localStorage.getItem('username'); // Get the username from local storage
-
-    // Fetch balance from the backend
-    fetch(`/api/user-balance?username=${username}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.balance !== undefined) {
-                document.getElementById('balance').textContent = `$${data.balance.toFixed(2)}`; // Display balance
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const username = localStorage.getItem('username'); // Get the username from local storage
+    
+        // Fetch balance from the backend
+        fetch(`/api/user-balance?username=${username}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.balance !== undefined) {
+                    document.getElementById('balance').textContent = `$${data.balance.toFixed(2)}`; // Display balance
+                } else {
+                    document.getElementById('balance').textContent = 'Balance not found';
+                    console.error('Balance not found');
+                }
+            })
+            .catch(error => {
+                document.getElementById('balance').textContent = 'Error loading balance';
+                console.error('Error fetching balance:', error);
+            });
+    
+        const withdrawForm = document.getElementById('withdraw-form');
+        const withdrawMethod = document.getElementById('withdraw-method');
+        const bankDetailsDiv = document.getElementById('bank-details');
+        const walletAddressDiv = document.getElementById('wallet-address-div');
+    
+        // Show/hide inputs based on withdrawal method selection
+        withdrawMethod.addEventListener('change', () => {
+            if (withdrawMethod.value === 'bank') {
+                bankDetailsDiv.style.display = 'block';
+                walletAddressDiv.style.display = 'none';
+            } else if (withdrawMethod.value === 'wallet') {
+                bankDetailsDiv.style.display = 'none';
+                walletAddressDiv.style.display = 'block';
             } else {
-                document.getElementById('balance').textContent = 'Balance not found';
-                console.error('Balance not found');
+                bankDetailsDiv.style.display = 'none';
+                walletAddressDiv.style.display = 'none';
             }
-        })
-        .catch(error => {
-            document.getElementById('balance').textContent = 'Error loading balance';
-            console.error('Error fetching balance:', error);
         });
-
-    // Handle withdrawal form submission
-    const withdrawForm = document.getElementById('withdraw-form');
-    withdrawForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const amount = document.getElementById('withdraw-amount').value;
-        const walletAddress = document.getElementById('wallet-address').value; // Get wallet address
-
-        fetch('/api/withdraw', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, amount, walletAddress }) // Send wallet address with the request
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.message) {
-                alert(data.message);
-                window.location.reload(); // Reload page to update balance
+    
+        // Handle withdrawal form submission
+        withdrawForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+    
+            const amount = document.getElementById('withdraw-amount').value;
+            const method = withdrawMethod.value;
+    
+            // Collect bank or wallet info based on selection
+            let bankDetails = {};
+            let walletAddress = '';
+    
+            if (method === 'bank') {
+                bankDetails = {
+                    bankName: document.getElementById('bank-name').value,
+                    accountName: document.getElementById('account-name').value,
+                    accountNumber: document.getElementById('account-number').value
+                };
+            } else if (method === 'wallet') {
+                walletAddress = document.getElementById('wallet-address').value;
             }
-        })
-        .catch(error => console.error('Error processing withdrawal:', error));
+    
+            fetch('/api/withdraw', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username, 
+                    amount, 
+                    method, 
+                    walletAddress, 
+                    bankDetails
+                }) // Send bank details or wallet address
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);
+                    window.location.reload(); // Reload page to update balance
+                }
+            })
+            .catch(error => console.error('Error processing withdrawal:', error));
+        });
+    
+        const menuBtn = document.querySelector('.menu-btn');
+        const topMenu = document.getElementById('topMenu');
+        const overlay = document.getElementById('overlay');
+    
+        // Toggle Menu and Overlay
+        menuBtn.addEventListener('click', () => {
+            topMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+    
+        // Close Menu when clicking outside
+        overlay.addEventListener('click', () => {
+            topMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
     });
-});
-
-    const menuBtn = document.querySelector('.menu-btn');
-    const topMenu = document.getElementById('topMenu');
-    const overlay = document.getElementById('overlay');
-
-    // Toggle Menu and Overlay
-    menuBtn.addEventListener('click', () => {
-        topMenu.classList.toggle('active');
-        overlay.classList.toggle('active');
-    });
-
-    // Close Menu when clicking outside
-    overlay.addEventListener('click', () => {
-        topMenu.classList.remove('active');
-        overlay.classList.remove('active');
-    });
-</script>
+    </script>
+    
 </body>
 </html>
