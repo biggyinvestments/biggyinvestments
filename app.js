@@ -336,7 +336,7 @@ app.post('/api/auth/login', (req, res) => {
            </tr>
            <tr>
              <td style="background-color: #f4f4f4; padding: 10px; text-align: center;">
-               <p style="font-size: 12px; color: #740000;">&copy; 2024 Biggyassets. All rights reserved.</p>
+               <p style="font-size: 12px; color: #740000;">&copy; 2024 BiggyassetsLTD. All rights reserved.</p>
              </td>
            </tr>
          </table>
@@ -713,7 +713,7 @@ app.post('/api/withdraw', (req, res) => {
                         </tr>
                         <tr>
                           <td style="background-color: #f4f4f4; padding: 10px; text-align: center;">
-                            <p style="font-size: 12px; color: #3e059b;">&copy; 2024 Memecointech. All rights reserved.</p>
+                            <p style="font-size: 12px; color: #740000;">&copy; 2024 BiggyassetsLTD. All rights reserved.</p>
                           </td>
                         </tr>
                       </table>
@@ -755,8 +755,6 @@ app.get('/api/user-balance', (req, res) => {
 });
 
 
-
-
 // Route to get the count of pending deposits
 app.get('/api/admin/pending-deposits/count', (req, res) => {
     pool.query(
@@ -771,8 +769,6 @@ app.get('/api/admin/pending-deposits/count', (req, res) => {
         }
     );
 });
-
-
 
 
 // Route to get all pending withdrawals for admin
@@ -791,21 +787,6 @@ app.get('/api/admin/pending-withdrawals', (req, res) => {
     res.json(results);
   });
 });
-
-
-// // Route to get all pending withdrawals for admin
-// app.get('/api/admin/pending-withdrawals', (req, res) => {
-//   // Ensure the query selects wallet_address as well
-//   const query = 'SELECT id, username, amount, wallet_address, status FROM pending_withdrawals WHERE status = ?';
-//   pool.query(query, ['pending'], (error, results) => {
-//     if (error) {
-//       console.error('Error fetching pending withdrawals:', error);
-//       return res.status(500).json({ message: 'Error fetching pending withdrawals' });
-//     }
-//     res.json(results);
-//   });
-// });
-
 
 
 app.get('/api/pending-withdrawals', (req, res) => {
