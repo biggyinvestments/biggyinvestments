@@ -17,6 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&family=Protest+Guerrilla&display=swap" rel="stylesheet"> 
 <style>
 
+
 </style>
 </head>
 <body>
@@ -42,7 +43,8 @@
     <a href="signin.html">Sign in</a>
     <a href="about-us.html">Know Us more</a>
     <a href="faq.html">FAQ</a>
-    <button id="install-button">Install the app</button>
+    
+
   </div>
 
 
@@ -56,7 +58,10 @@
         <div class="hero-content">
             <h1>Empowering Your Crypto Investments</h1>
             <p>Join the next wave of crypto pioneers. Invest, grow, and diversify with confidence using our secure and cutting-edge platform. We're here to help you maximize your gains in the evolving crypto world.</p> <br><br>
-            <a href="signup.html" class="hero-btn">Start</a><a href="signin.html" class="hero-btn" style="margin-left: 5px; background-color: white; color:rgba(116, 0, 0, 1);">LOGIN</a><br><br>
+            <a href="signup.html" class="hero-btn">Start</a><a href="signin.html" class="hero-btn" style="margin-left: 5px; background-color: white; color:rgba(116, 0, 0, 1);">LOGIN</a><br>
+            <button id="install-button" >Install our app</button>
+
+            <br><br>
             <p style="color: white; font-size: 9px;">To view our RIOs please get started and see full plan's list</p>
         </div>
     </div>
@@ -655,7 +660,7 @@ Whether you're looking to diversify your portfolio or just getting started with 
   </footer>
 
         <!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   var _smartsupp = _smartsupp || {};
   _smartsupp.key = '9faee08c06a2fffc9ed9081a6c81c4088d7fb63a';
   window.smartsupp||(function(d) {
@@ -665,35 +670,45 @@ Whether you're looking to diversify your portfolio or just getting started with 
     c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
   })(document);
   </script>
-  <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+  <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript> -->
 
 <script src="java.js"></script>
 <script>
 let deferredPrompt;
 
 window.addEventListener("beforeinstallprompt", (e) => {
-  // Prevent the mini-info bar from appearing
+  console.log("beforeinstallprompt event fired"); // For debugging
   e.preventDefault();
   deferredPrompt = e;
 
-  // Show a custom button for installing the PWA
+  // Enable the install button
   const installButton = document.getElementById("install-button");
+  
+  // Show the button (you may remove this if button should always be visible)
   installButton.style.display = "block";
 
   installButton.addEventListener("click", () => {
-    installButton.style.display = "none";
-    deferredPrompt.prompt();
+    if (deferredPrompt) {
+      console.log("Install prompt triggered"); // For debugging
 
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === "accepted") {
-        console.log("User accepted the install prompt");
-      } else {
-        console.log("User dismissed the install prompt");
-      }
-      deferredPrompt = null;
-    });
+      // Show the install prompt
+      deferredPrompt.prompt();
+
+      // Wait for the user's response
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          console.log("User accepted the install prompt");
+        } else {
+          console.log("User dismissed the install prompt");
+        }
+        deferredPrompt = null; // Reset the prompt variable
+      });
+    } else {
+      console.log("Install prompt not available"); // If the prompt wasn't ready
+    }
   });
 });
+
 
 </script>  
 </body>

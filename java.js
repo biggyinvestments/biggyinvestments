@@ -241,10 +241,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-const testimonials = document.querySelectorAll('.testimonial');
+  document.addEventListener("DOMContentLoaded", function() {
+    const testimonials = document.querySelectorAll('.testimonial');
 const dots = document.querySelectorAll('.dot');
 
 let currentIndex = 0;
@@ -278,6 +276,12 @@ showTestimonial(currentIndex); // Show the selected testimonial
 
 // Show the first testimonial by default
 showTestimonial(currentIndex);
+});
+
+
+
+
+
 
 // FAQ toggle functionality
 document.querySelectorAll('.faq-question').forEach(item => {
@@ -351,3 +355,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 });
+
+
+

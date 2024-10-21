@@ -1,4 +1,4 @@
-const CACHE_NAME = 'Biggyassets-cache-v5';
+const CACHE_NAME = 'Biggyassets-cache-v6';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -6,10 +6,9 @@ const urlsToCache = [
   '/signup.html',
   '/signin.html',
   '/bonus.html',
-  '/confirm.html',
+  '/confirm.html', // Only keep one instance
   '/dashboard.html',
   '/earning-history.html',
-  '/confirm.html',
   '/invest.html',
   '/java.js',
   '/expiring.html',
