@@ -1,0 +1,25 @@
+{
+    "name": "Biggyassets",
+    "short_name": "Biggyassets",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4CAF50",
+    "icons": [
+      {
+        "src": "/images/biggy logo medium.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/images/biggy logo large.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "./images/biggy logo small.png",
+        "sizes": "72x72",
+        "type": "image/png"
+      }
+    ]
+}
