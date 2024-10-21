@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/admindash.css">
     <title>Expiring Deposits</title>
+    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
 
@@ -89,7 +90,7 @@ fetch('/api/admin/pending-deposits/count')
                         <td style="color: red;">${deposit.amount}</td>
                         <td style="color: white; background-color:#ffc107; ">${deposit.plan_name}</td>
                         <td>${new Date(deposit.investment_end_date).toLocaleString()}</td>
-                        <td style="color: white; background-color: green;">${deposit.days_left}</td>
+                        <td style="color: green;">${deposit.days_left}</td>
                     `;
                     tbody.appendChild(row);
                 });

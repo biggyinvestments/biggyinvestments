@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
 <html > <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="manifest" href="/manifest.json">
     <title>BiggyAssets Dashboard</title>
     <meta name="theme-color" content=" #3e059b">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -60,30 +61,6 @@ fetch('/api/admin/pending-deposits/count')
             .catch(error => console.error('Error fetching total users:', error));
     });
 
-//     // Fetch and display total withdrawals
-//     fetch('/api/admin/total-withdrawals')
-//         .then(response => response.json())
-//         .then(data => {
-//             document.getElementById('total-withdrawals').textContent = `$${data.totalWithdrawals.toFixed(2)}`;
-//         })
-//         .catch(error => console.error('Error fetching total withdrawals:', error));
-
-//     // Fetch and display total deposits
-//     fetch('/api/admin/total-deposits')
-//         .then(response => response.json())
-//         .then(data => {
-//             document.getElementById('total-deposits').textContent = `$${data.totalDeposits.toFixed(2)}`;
-//         })
-//         .catch(error => console.error('Error fetching total deposits:', error));
-
-//     // Fetch and display total balance
-//     fetch('/api/admin/total-balance')
-//         .then(response => response.json())
-//         .then(data => {
-//             document.getElementById('total-balance').textContent = `$${data.totalBalance.toFixed(2)}`;
-//         })
-//         .catch(error => console.error('Error fetching total balance:', error));
-// });
 
 
 
