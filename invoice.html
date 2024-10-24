@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <title>BIGGYassets</title>
+    <meta name="theme-color" content="  #740000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #740000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="./css/invoice.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&family=Protest+Guerrilla&display=swap" rel="stylesheet"> 
+<style>
+
+
+</style>
+</head>
+<body>
+    <form id="invoiceForm" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="paymentStatus">Payment Status:</label>
+        <input type="text" id="paymentStatus" name="paymentStatus" required><br><br>
+        
+        <label for="paymentGateway">Payment Gateway:</label>
+        <select id="paymentGateway" name="paymentGateway" required>
+          <option value="Perfect Money">Perfect Money</option>
+          <option value="Bitcoin">Bitcoin</option>
+          <option value="USDT">USDT</option>
+          <option value="ABA Bank">ABA Bank</option>
+          <option value="Tron">Tron</option>
+          <option value="Ethereum">Ethereum</option>
+        </select><br><br>
+        
+        <label for="walletId">Wallet ID:</label>
+        <input type="text" id="walletId" name="walletId" required><br><br>
+        
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required><br><br>
+        
+        <button type="submit">Submit</button>
+      </form>
+      <script>
+        document.getElementById('invoiceForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent default form submission
+
+  // Get the form values
+  const username = document.getElementById('username').value;
+  const email = document.getElementById('email').value;
+  const paymentStatus = document.getElementById('paymentStatus').value;
+  const paymentGateway = document.getElementById('paymentGateway').value;
+  const walletId = document.getElementById('walletId').value;
+  const amount = document.getElementById('amount').value;
+
+  // Create the data object to send
+  const invoiceData = {
+    username: username,
+    email: email,
+    paymentStatus: paymentStatus,
+    paymentGateway: paymentGateway,
+    walletId: walletId,
+    amount: amount
+  };
+
+  // Send the POST request to the backend
+  fetch('/send-invoice', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(invoiceData) // Convert JS object to JSON
+  })
+  .then(response => response.text())  // Parse the response
+  .then(data => {
+    alert('Invoice sent successfully: ' + data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('There was an error sending the invoice');
+  });
+});
+
+      </script>
+</body>
+</html>
