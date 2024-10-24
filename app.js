@@ -285,8 +285,8 @@ app.post('/api/auth/login', (req, res) => {
       // Calculate investment end date based on plan
       const planEndTimes = {
         '20% RIO AFTER 24 HOURS': 48 * 60 * 60 * 1000, // 48 hours in milliseconds
-        '50% RIO AFTER 72 HOURS': 72 * 60 * 60 * 1000, // 72 hours in milliseconds
-        '100% RIO AFTER 96 HOURS': 96 * 60 * 60 * 1000, // 96 hours in milliseconds
+        '35% RIO AFTER 72 HOURS': 72 * 60 * 60 * 1000, // 72 hours in milliseconds
+        '50% RIO AFTER 96 HOURS': 96 * 60 * 60 * 1000, // 96 hours in milliseconds
         '200% RIO AFTER 120 HOURS': 120 * 60 * 60 * 1000 // 120 hours in milliseconds
       };
   
