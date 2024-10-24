@@ -1,4 +1,4 @@
-const CACHE_NAME = 'Biggyassets-cache-v6';
+const CACHE_NAME = 'Biggyassets-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',

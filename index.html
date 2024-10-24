@@ -56,13 +56,31 @@
         </video>
 
         <div class="hero-content">
-            <h1>Empowering Your Crypto Investments</h1>
+
+          <div class="login-container">
+            <div class="login-header">Login</div>
+            <form id="loginForm" class="login-form">
+              <input type="email" id="email" placeholder="Email">
+              <input type="password" id="password" placeholder="password">
+              
+                <div class="forgot-password">
+                   
+                </div>
+                <div id="error-message" style="color: red; margin-top: 1rem;"></div>
+                <button type="submit">Login</button>
+            </form><br>
+            <div class="signup">
+                Don't have an account? <br><br><a href="signup.html" style="color: white;">Sign up</a>
+            </div>
+        </div>
+        </div>
+            <!-- <h1>Empowering Your Crypto Investments</h1>
             <p>Join the next wave of crypto pioneers. Invest, grow, and diversify with confidence using our secure and cutting-edge platform. We're here to help you maximize your gains in the evolving crypto world.</p> <br><br>
             <a href="signup.html" class="hero-btn">Start</a><a href="signin.html" class="hero-btn" style="margin-left: 5px; background-color: white; color:rgba(116, 0, 0, 1);">LOGIN</a><br>
             <button id="install-button" >Install our app</button>
 
             <br><br>
-            <p style="color: white; font-size: 9px;">To view our RIOs please get started and see full plan's list</p>
+            <p style="color: white; font-size: 9px;">To view our RIOs please get started and see full plan's list</p> -->
         </div>
     </div>
 
@@ -709,6 +727,53 @@ window.addEventListener("beforeinstallprompt", (e) => {
   });
 });
 
+// Assuming you are using Fetch API to send the login request
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  // Input validation
+  if (!email || !password) {
+    alert('Email and password are required');
+    return;
+  }
+
+  if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[^\s@]+$/.test(email)) {
+    alert('Invalid email address');
+    return;
+  }
+
+  fetch('/api/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
+  })
+  .then(response => {
+    // Check if the response is a redirect
+    if (response.redirected) {
+      // Redirect to the appropriate page
+      window.location.href = response.url;
+      return; // Exit the function to avoid further processing
+    }
+    return response.json(); // Otherwise, parse as JSON
+  })
+  .then(data => {
+    if (data) { // If there's data after JSON parsing
+      if (data.message === 'Login successful') {
+        // Store the username in local storage
+        localStorage.setItem('username', data.username);
+        window.location.href = '/dashboard.html'; // Redirect to user dashboard
+      } else if (data.error) {
+        alert(data.error); // Show error message
+      }
+    }
+  })
+  .catch(error => console.error('Error:', error));
+});
 
 </script>  
 </body>
