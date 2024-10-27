@@ -1390,3 +1390,128 @@ footer{
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+
+/* General styles for the partners section */
+.partners-section {
+  padding: 50px 0;
+  background-color: #f8f9fa;
+}
+
+.partners-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: rgba(116, 0, 0, 1);
+}
+
+.partners-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Track for the first row */
+.partners-track {
+  display: flex;
+  width: 200%;
+}
+
+/* Track that slides to the left */
+.left-slide {
+  animation: slide-left 20s linear infinite;
+}
+
+/* Track that slides to the right */
+.right-slide {
+  animation: slide-right 20s linear infinite;
+}
+
+/* Style for each slide container */
+.partners-slide {
+  display: flex;
+  width: 50%; /* Each slide takes up half the track */
+}
+
+.partners-slide img {
+  width: 25px;
+  height: 20px;
+  margin: 0 15px;
+  opacity: 0.9;
+}
+
+/* Keyframes for sliding left */
+@keyframes slide-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-10%); }
+}
+
+/* Keyframes for sliding right */
+@keyframes slide-right {
+  0% { transform: translateX(-10%); }
+  100% { transform: translateX(0); }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .partners-slide img {
+      width: 120px;
+      margin: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .partners-slide img {
+      width: 100px;
+      margin: 0 5px;
+  }
+}
+
+
+
+.news-section {
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  
+}
+
+.news-section h2{
+  color:rgba(116, 0, 0, 1);
+  
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.news-item {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.news-item h3 {
+  font-size: 20px;
+  color: #333;
+}
+
+.news-item p {
+  font-size: 16px;
+  color: #555;
+}
+
+.read-more {
+  font-size: 14px;
+  color:rgba(116, 0, 0, 1);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.news-item:hover {
+  transform: translateY(-5px);
+}
