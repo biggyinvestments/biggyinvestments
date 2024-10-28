@@ -246,6 +246,79 @@ app.post('/api/auth/login', (req, res) => {
   });
 
 
+  // Add route to handle invoice submissions
+app.post('/send-invoice', async (req, res) => {
+  try {
+    const { username, email, paymentStatus, paymentGateway, walletId, amount } = req.body;
+
+    // Generate the current date for the transaction
+    const transactionDate = new Date().toLocaleDateString();
+
+    // HTML content for the email
+    const emailContent = `
+  <div style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;">
+    <table width="100%" style="max-width: 600px; margin: auto; border-collapse: collapse;">
+      <tr>
+        <td style="text-align: center; padding: 20px;">
+          <img src="https://github.com/biggyinvestments/biggyinvestments/blob/main/images/biggy%20logo.png?raw=true" alt="Company Logo" style="max-width: 100%; height: auto;"/>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: #740000; padding: 20px; text-align: center; color: white;">
+          <h1 style="margin: 0;">Hello, ${username}!</h1>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: white; padding: 20px;">
+          <p style="font-size: 16px; line-height: 1.5;">
+            We are happy to inform you that the withdrawal you made has been processed and approved by our financial department.
+          </p>
+          <table width="100%" style="font-size: 16px; line-height: 1.5; margin-top: 20px;">
+            <tr>
+              <td><strong>Payment Gateway:</strong></td>
+              <td>${paymentGateway}</td>
+            </tr>
+            <tr>
+              <td><strong>Wallet ID:</strong></td>
+              <td>${walletId}</td>
+            </tr>
+            <tr>
+              <td><strong>Amount:</strong></td>
+              <td>${amount}</td>
+            </tr>
+            <tr>
+              <td><strong>Date:</strong></td>
+              <td>${transactionDate}</td>
+            </tr>
+          </table>
+          <p style="font-size: 16px; line-height: 1.5; margin-top: 20px;">
+            Thank you and best regards,
+          </p>
+          <p style="font-size: 16px; line-height: 1.5;">BiggyAssets Investment Team</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: #f4f4f4; padding: 10px; text-align: center;">
+          <p style="font-size: 12px; color:#740000;">&copy; 2024 BiggyAssets. All rights reserved.</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+`;
+
+
+    // Use the existing sendEmail function
+    await sendEmail(email, 'Withdrawal Processed - BiggyAssets Investment', emailContent);
+
+    res.status(200).send('Invoice email sent successfully');
+  } catch (error) {
+    console.error('Error sending invoice:', error);
+    res.status(500).send('Error sending invoice email');
+  }
+});
+
+
+
   app.post('/api/deposit', async (req, res) => {
     try {
       const { 
@@ -360,38 +433,47 @@ app.post('/api/auth/login', (req, res) => {
   
   const checkInvestmentEnd = async () => {
     try {
-      const now = new Date();
-  
-      // Find deposits where the end date has passed
-      const [deposits] = await pool.promise().query(
-        `SELECT * FROM deposits 
-         WHERE investment_end_date <= ? AND status = 'pending'`,
-        [now]
-      );
-  
-      for (const deposit of deposits) {
-        // Update user's balance
-        await pool.promise().query(
-          `UPDATE users 
-           SET balance = balance + ?, total_deposits = total_deposits + ? 
-           WHERE id = ?`,
-          [deposit.amount, deposit.amount, deposit.user_id]
+        const now = new Date();
+
+        // Find active deposits where the end date has passed
+        const [activeDeposits] = await pool.promise().query(
+            `SELECT * FROM active_deposits 
+             WHERE investment_end_date <= ? AND status = 'active'`,
+            [now]
         );
-  
-        // Update deposit status to 'completed'
-        await pool.promise().query(
-          `UPDATE deposits 
-           SET status = 'completed' 
-           WHERE id = ?`,
-          [deposit.id]
-        );
-      }
-  
-      console.log('Investment end check completed.');
+
+        for (const deposit of activeDeposits) {
+            const { amount, interest, user_id, plan_name, investment_start_date, id } = deposit;
+
+            // Update user's balance with both amount and interest
+            await pool.promise().query(
+                `UPDATE users 
+                 SET balance = balance + ?, total_deposits = total_deposits + ? 
+                 WHERE id = ?`,
+                [amount + interest, amount, user_id]
+            );
+
+            // Insert into completed_deposits table
+            await pool.promise().query(
+                `INSERT INTO completed_deposits (user_id, amount, interest, plan_name, investment_start_date, investment_end_date, date_completed)
+                 VALUES (?, ?, ?, ?, ?, ?, ?)`,
+                [user_id, amount, interest, plan_name, investment_start_date, deposit.investment_end_date, now]
+            );
+
+            // Remove deposit from active_deposits
+            await pool.promise().query(
+                `DELETE FROM active_deposits 
+                 WHERE id = ?`,
+                [id]
+            );
+        }
+
+        console.log('Investment end check completed.');
     } catch (err) {
-      console.error('Error checking investments:', err);
+        console.error('Error checking investments:', err);
     }
-  };
+};
+
 
 
 // Route to get the number of recent investment packages
