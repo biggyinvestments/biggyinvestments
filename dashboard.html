@@ -538,8 +538,8 @@ fetch(`/users?username=${username}`, {
     
     const userData = data[0];
     document.getElementById('username').innerHTML = ` ${userData.username}`;
-    document.getElementById('balance').innerHTML = `Balance: ${userData.balance}`;
-    document.getElementById('total-deposits').innerHTML = `Total Deposits: ${userData.total_deposits}`;
+    document.getElementById('balance').innerHTML = `Balance: $${userData.balance}`;
+    document.getElementById('total-deposits').innerHTML = `Total Deposits: $${userData.total_deposits}`;
     
   } else {
     // If it's not an array, handle the error

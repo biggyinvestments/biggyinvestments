@@ -443,21 +443,24 @@ app.post('/send-invoice', async (req, res) => {
         );
 
         for (const deposit of activeDeposits) {
-            const { amount, interest, user_id, plan_name, investment_start_date, id } = deposit;
+            const { amount, interest, user_id, plan_name, investment_start_date, investment_end_date, id } = deposit;
+
+            // Calculate the total amount to credit (amount + interest)
+            const totalCredit = amount + interest;
 
             // Update user's balance with both amount and interest
             await pool.promise().query(
                 `UPDATE users 
                  SET balance = balance + ?, total_deposits = total_deposits + ? 
                  WHERE id = ?`,
-                [amount + interest, amount, user_id]
+                [totalCredit, amount, user_id]
             );
 
             // Insert into completed_deposits table
             await pool.promise().query(
                 `INSERT INTO completed_deposits (user_id, amount, interest, plan_name, investment_start_date, investment_end_date, date_completed)
                  VALUES (?, ?, ?, ?, ?, ?, ?)`,
-                [user_id, amount, interest, plan_name, investment_start_date, deposit.investment_end_date, now]
+                [user_id, amount, interest, plan_name, investment_start_date, investment_end_date, now]
             );
 
             // Remove deposit from active_deposits
@@ -468,7 +471,7 @@ app.post('/send-invoice', async (req, res) => {
             );
         }
 
-        console.log('Investment end check completed.');
+        console.log('Investment end check completed and balances updated.');
     } catch (err) {
         console.error('Error checking investments:', err);
     }
